@@ -7,6 +7,7 @@ import {
 } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 
 import uploadService from '@/services/uploadService';
 
@@ -19,10 +20,12 @@ export default function MyEditor({
   value?: string;
   onChange: (value: string, name: string) => void;
 }) {
+  const blocksFromHtml = htmlToDraft(value);
+  const { contentBlocks, entityMap } = blocksFromHtml;
 
   const [editorState, setEditorState] = useState(() =>
     EditorState.createWithContent(
-      ContentState.createFromBlockArray(convertFromHTML(value)),
+      ContentState.createFromBlockArray(contentBlocks, entityMap),
     ),
   );
   const editorRef = useRef(null);

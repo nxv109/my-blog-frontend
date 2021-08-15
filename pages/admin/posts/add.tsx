@@ -111,7 +111,7 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
               <Select
                 values={categories}
                 name="category"
-                selected=""
+                defaultValue=''
                 onChange={handleChange}
               />
             </S.FormGroup>
