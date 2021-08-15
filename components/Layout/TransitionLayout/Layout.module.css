@@ -1,0 +1,26 @@
+.wrapper{
+  width: 80%;
+  height: 100%;
+  opacity: 0;
+  transition: .5s;
+  display: flex;
+  margin: auto;
+}
+
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 100%;
+  }
+
+  .wrapper > section {
+    padding: 2rem;
+  }
+}
+
+.wrapper > section {
+  width: 100%;
+}
+
+.fadeIn {
+  opacity: 1;
+}
