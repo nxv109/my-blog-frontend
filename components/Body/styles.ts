@@ -10,9 +10,8 @@ export const Body = styled.section`
     rgba(0, 212, 255, 0) 100%
   );
   color: ${({ theme }) => theme.colors.blue};
-  padding: 3rem;
+  padding: 1rem;
   height: calc(100% - 70px);
-  border-radius: 1rem;
 
   display: flex;
   flex-direction: row;

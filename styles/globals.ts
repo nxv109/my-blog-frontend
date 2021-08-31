@@ -92,7 +92,6 @@ const base = css`
     max-width: 100%;
     height: 70%;
     margin: auto;
-    border-radius: 2rem;
     backdrop-filter: blur(2px);
     box-shadow: ${({ theme }) =>
       `0px 0px 20px 5px ${rgba(theme.colors.white, 0.2)}`};

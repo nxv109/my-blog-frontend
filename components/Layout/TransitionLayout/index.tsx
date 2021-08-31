@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Loader from '@/components/Loader';
+
 import styles from './Layout.module.css';
 
 interface IProps {
@@ -8,6 +10,7 @@ interface IProps {
 function TransitionLayout({ children }: IProps) {
   const [displayChildren, setDisplayChildren] = useState(children);
   const [transitionStage, setTransitionStage] = useState('fadeOut');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setTransitionStage('fadeIn');
@@ -15,8 +18,10 @@ function TransitionLayout({ children }: IProps) {
 
   useEffect(() => {
     // if (children?.type.name !== displayChildren.type.name) // This happen issue not load page in Nextjs
-    if (children !== displayChildren)
+    if (children !== displayChildren) {
       setTransitionStage('fadeOut');
+      setLoading(true);
+    }
   }, [children, displayChildren]);
 
   return (
@@ -25,11 +30,12 @@ function TransitionLayout({ children }: IProps) {
         if (transitionStage === 'fadeOut') {
           setDisplayChildren(children);
           setTransitionStage('fadeIn');
+          setLoading(false);
         }
       }}
       className={`${styles.wrapper} ${styles[transitionStage]}`}
     >
-      {displayChildren}
+      {loading ? <Loader /> : displayChildren}
     </div>
   );
 }

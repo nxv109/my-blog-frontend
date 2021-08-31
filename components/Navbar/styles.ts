@@ -9,7 +9,6 @@ export const Navbar = styled.nav`
   width: 20%;
   height: 100%;
   padding: 3rem;
-  border-radius: 2rem;
   border-right: 5px solid ${({ theme }) => theme.colors.yellow2};
   box-shadow: 5px 5px 15px -6px rgba(0, 0, 0, 0.7);
   display: flex;

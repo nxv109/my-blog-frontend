@@ -9,16 +9,15 @@ export const Logo = styled.a`
   border-radius: 5px;
   background: ${({ theme }) => theme.colors.black};
 
-  /* &:before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 83px;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.blue};
-    z-index: -1;
-  } */
+  @media (max-width: 1024px) {
+    max-width: 50%;
+    margin: 0 auto 5rem auto;
+  }
+
+  @media (max-width: 637px) {
+    max-width: 100%;
+    margin: 0 auto 5rem auto;
+  }
 
   & > img {
     width: 100%;
