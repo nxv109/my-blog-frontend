@@ -55,7 +55,6 @@ export const NavbarItems = styled.div`
     color: ${({ theme }) => theme.colors.blue};
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
-    font-weight: 600;
 
     &:hover,
     &.active {

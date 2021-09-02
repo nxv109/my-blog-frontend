@@ -4,13 +4,21 @@ import LogoDefault from '@/assets/images/logo.png';
 
 import * as S from './styles';
 
-function Logo() {
+function Logo({ isDisabledLink = false }: { isDisabledLink?: boolean }) {
   return (
-    <Link href="/" passHref>
-      <S.Logo>
-        <img src={LogoDefault} alt="logo" />
-      </S.Logo>
-    </Link>
+    <>
+      {isDisabledLink ? (
+        <S.Logo>
+          <img src={LogoDefault} alt="logo" />
+        </S.Logo>
+      ) : (
+        <Link href="/" passHref>
+          <S.Logo>
+            <img src={LogoDefault} alt="logo" />
+          </S.Logo>
+        </Link>
+      )}
+    </>
   );
 }
 

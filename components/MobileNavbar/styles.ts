@@ -4,8 +4,8 @@ export const Btn = styled.div`
   position: absolute;
   right: 2rem;
   top: 2rem;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,9 +18,55 @@ export const Btn = styled.div`
 `;
 
 export const Line = styled.div`
-  height: 4px;
+  height: 2px;
   background: ${({ theme }) => theme.colors.yellow};
-  border-radius: 5px;
+  animation: line 2s;
+
+  @keyframes line {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+export const DiagonalLine = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: ${({ theme }) => theme.colors.yellow};
+
+  &:nth-child(1) {
+    transform: rotate(45deg);
+    animation: diagonalLine1 2s;
+  }
+
+  &:nth-child(2) {
+    transform: rotate(-45deg);
+    animation: diagonalLine2 2.5s;
+  }
+
+  @keyframes diagonalLine1 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes diagonalLine2 {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const NavbarWrapper = styled.nav`
@@ -29,11 +75,7 @@ export const NavbarWrapper = styled.nav`
   left: 150%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0.7)
-  );
+  background: linear-gradient(to right bottom, rgb(35 35 35), rgb(0 0 0 / 70%));
   transition: all 1s ease;
   padding: 0 5rem;
   z-index: 1;
@@ -46,7 +88,7 @@ export const NavbarWrapper = styled.nav`
 export const Navbar = styled.nav`
   width: 100%;
   height: 100%;
-  padding: 3rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-flow: column;
 
@@ -84,10 +126,9 @@ export const NavbarItems = styled.div`
     font-size: 2.3rem;
     width: fit-content;
     transition: all 0.3s;
-    color: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.white};
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
-    font-weight: 600;
 
     &:hover,
     &.active {
@@ -131,6 +172,7 @@ export const UserSection = styled.div`
   button {
     &:first-child {
       margin-bottom: 1rem;
+      color: #ecdfbf;
     }
   }
 `;

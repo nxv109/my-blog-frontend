@@ -4,45 +4,28 @@ import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Button from '@/components/Button';
 
-import userService from '@/services/userService';
+import { projects } from '@/constants/projects';
 
 import * as S from '@/styles/pages/about-me';
 
-const projects = [
-  {
-    name: 'Covid App',
-    imgURL: 'https://i.ibb.co/QcYjHvd/cat.jpg',
-    description: 'This is nice project',
-    url: 'https://covid19-vn.netlify.app/',
-  },
-  {
-    name: 'News',
-    imgURL: 'https://i.ibb.co/QcYjHvd/cat.jpg',
-    description: 'This is nice project',
-    url: 'https://news-mern-stack.herokuapp.com/',
-  },
-  {
-    name: 'Quiz app',
-    imgURL: 'https://i.ibb.co/QcYjHvd/cat.jpg',
-    description: 'This is nice project',
-    url: 'https://quiz-mern-stack.herokuapp.com/',
-  },
-] as const;
-
-function MyCV({ user }: { user: any }) {
+function AboutMe() {
   const handleDetail = (url: string): void => {
     window.open(url, '_blank');
   };
 
   return (
     <S.Wrapper>
-      <Header title="About me?" />
+      <Header title="About me" />
       <Body noPadding>
         <S.InnerWrapper>
           <S.InfoBox>
             <S.InfoLeft>
               <S.Avatar>
-                <Image src={user.avatar} layout="fill" alt="avatar" />
+                <Image
+                  src="https://i.ibb.co/Yk1VZTf/avatar1-resized.jpg"
+                  layout="fill"
+                  alt="avatar"
+                />
               </S.Avatar>
             </S.InfoLeft>
             <S.InfoRight>
@@ -62,7 +45,6 @@ function MyCV({ user }: { user: any }) {
               </S.BioBox>
             </S.InfoRight>
           </S.InfoBox>
-
           <S.ProjectBox>
             <S.Title>Projects that I used to do?</S.Title>
             <S.Projects>
@@ -98,20 +80,4 @@ function MyCV({ user }: { user: any }) {
   );
 }
 
-export const getServerSideProps = async () => {
-  try {
-    const { data } = await userService.getMyCV({ url: '/users/my-cv' });
-
-    return {
-      props: {
-        user: data.data,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
-};
-
-export default MyCV;
+export default AboutMe;

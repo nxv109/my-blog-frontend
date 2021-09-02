@@ -29,7 +29,6 @@ export const Avatar = styled.div`
   width: 200px;
   max-width: 100%;
   height: 400px;
-  border-right: 5px solid ${({ theme }) => theme.colors.yellow2};
   overflow: hidden;
 
   img {

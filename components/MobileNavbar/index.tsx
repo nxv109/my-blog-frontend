@@ -84,13 +84,22 @@ function MobileNavbar() {
   return (
     <>
       <S.Btn onClick={handleToggleNavbar}>
-        <S.Line></S.Line>
-        <S.Line></S.Line>
-        <S.Line></S.Line>
+        {showNavbar ? (
+          <>
+            <S.DiagonalLine></S.DiagonalLine>
+            <S.DiagonalLine></S.DiagonalLine>
+          </>
+        ) : (
+          <>
+            <S.Line></S.Line>
+            <S.Line></S.Line>
+            <S.Line></S.Line>
+          </>
+        )}
       </S.Btn>
       <S.NavbarWrapper style={{ left: showNavbar ? 0 : '150%' }}>
         <S.Navbar>
-          <Logo />
+          <Logo isDisabledLink />
           {renderNavbarItems()}
           {user ? (
             <S.UserSection>
