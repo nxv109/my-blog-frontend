@@ -5,7 +5,9 @@ export const Wrapper = styled.section`
 `;
 
 export const InnerWrapper = styled.div`
-  height: 100%;
+  @media (min-width: 637px) {
+    height: 100%;
+  }
 `;
 
 export const InfoBox = styled.div`
@@ -16,10 +18,19 @@ export const InfoBox = styled.div`
   height: 100%;
   padding: 3rem;
   background: ${({ theme }) => theme.colors.yellow3};
+
+  @media (max-width: 637px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const InfoLeft = styled.div`
-  margin-right: 10rem;
+  margin-right: 4rem;
+
+  @media (max-width: 637px) {
+    margin-right: 0;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const InfoRight = styled.div``;
@@ -28,7 +39,7 @@ export const Avatar = styled.div`
   position: relative;
   width: 200px;
   max-width: 100%;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
 
   img {
@@ -85,6 +96,10 @@ export const Project = styled.div`
 export const Image = styled(Avatar)`
   width: 200px;
   height: 200px;
+
+  @media (max-width: 637px) {
+    display: none;
+  }
 `;
 
 export const ProjectName = styled.h4`

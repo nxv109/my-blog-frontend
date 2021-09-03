@@ -13,12 +13,13 @@
   }
 
   .wrapper > section {
-    padding: 1rem 2rem;
+    padding: 1rem 2rem 7rem;
   }
 }
 
 .wrapper > section {
   width: 100%;
+  height: 100%;
 }
 
 .fadeIn {

@@ -37,11 +37,13 @@ const reset = css`
 `;
 
 const base = css`
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
   html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-tap-highlight-color: transparent;
-    font-feature-settings: 'palt';
     box-sizing: border-box;
     height: 100%;
     font-size: 62.5%;

@@ -22,7 +22,7 @@ function AboutMe() {
             <S.InfoLeft>
               <S.Avatar>
                 <Image
-                  src="https://i.ibb.co/Yk1VZTf/avatar1-resized.jpg"
+                  src="https://i.ibb.co/Mhwkp8z/profile-small-size.jpg"
                   layout="fill"
                   alt="avatar"
                 />
