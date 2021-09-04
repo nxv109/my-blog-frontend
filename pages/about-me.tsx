@@ -45,9 +45,9 @@ function AboutMe() {
               </S.BioBox>
             </S.InfoRight>
           </S.InfoBox>
-          <S.ProjectBox>
-            <S.Title>Projects that I used to do?</S.Title>
-            <S.Projects>
+          <S.SectionBox>
+            <S.Title>Projects I did</S.Title>
+            <S.Content>
               {projects.map((project, index) => (
                 <S.Project key={index}>
                   <S.Image>
@@ -72,8 +72,53 @@ function AboutMe() {
                   </S.ProjectInfo>
                 </S.Project>
               ))}
-            </S.Projects>
-          </S.ProjectBox>
+            </S.Content>
+          </S.SectionBox>
+          <S.SectionBox>
+            <S.Title>Follow me</S.Title>
+            <S.Content>
+              <S.SocialWrapper>
+                <S.SocialLink>
+                  <a
+                    href="https://www.facebook.com/nguyenxuanvinh109/"
+                    target="_blank"
+                  >
+                    <S.Logo
+                      src="https://i.ibb.co/n1bRD9h/facebook-circular-logo.png"
+                      width="30"
+                    />
+                  </a>
+                </S.SocialLink>
+                <S.SocialLink>
+                  <a href="https://twitter.com/nguoitoiyeu109" target="_blank">
+                    <S.Logo
+                      src="https://i.ibb.co/RzynQ99/twitter.png"
+                      width="30"
+                    />
+                  </a>
+                </S.SocialLink>
+                <S.SocialLink>
+                  <a
+                    href="https://www.linkedin.com/in/v%C4%A9nh-nguy%E1%BB%85n-967606185/"
+                    target="_blank"
+                  >
+                    <S.Logo
+                      src="https://i.ibb.co/5kc86Gh/linkedin.png"
+                      width="30"
+                    />
+                  </a>
+                </S.SocialLink>
+                <S.SocialLink>
+                  <a href="https://github.com/nxv109" target="_blank">
+                    <S.Logo
+                      src="https://i.ibb.co/YNdhSp1/github.png"
+                      width="30"
+                    />
+                  </a>
+                </S.SocialLink>
+              </S.SocialWrapper>
+            </S.Content>
+          </S.SectionBox>
         </S.InnerWrapper>
       </Body>
     </S.Wrapper>

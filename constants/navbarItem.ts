@@ -12,8 +12,8 @@ export const NAVBAR_ITEMS_CLIENT = [
     pathname: '/profile',
   },
   {
-    name: 'Contact',
-    pathname: '/contact',
+    name: 'My CV',
+    pathname: '/my-cv',
   },
 ] as const;
 

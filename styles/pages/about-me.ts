@@ -50,6 +50,10 @@ export const Avatar = styled.div`
 export const GreetBox = styled.h2`
   font-size: 5rem;
   color: ${({ theme }) => theme.colors.blue};
+
+  @media (max-width: 637px) {
+    font-size: 4rem;
+  }
 `;
 
 export const Greeting = styled.span`
@@ -68,15 +72,16 @@ export const Profession = styled.h3`
 
 export const BioText = styled.p``;
 
-export const ProjectBox = styled.div``;
+export const SectionBox = styled.div``;
 
 export const Title = styled.h3`
+  background: url('https://i.ibb.co/wwb3vG5/dotted-bg.png');
   text-align: center;
   font-size: 3rem;
   margin: 3rem 0;
 `;
 
-export const Projects = styled.div`
+export const Content = styled.div`
   background: ${({ theme }) => theme.colors.gray};
   padding: 3rem;
 `;
@@ -105,6 +110,10 @@ export const Image = styled(Avatar)`
 export const ProjectName = styled.h4`
   font-size: 2.2rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 634px) {
+    margin-bottom: 0;
+  }
 `;
 
 export const ProjectInfo = styled.div`
@@ -117,6 +126,28 @@ export const ProjectInfo = styled.div`
     margin-top: auto;
     margin-left: auto;
   }
+
+  @media (max-width: 634px) {
+    padding: 5px;
+  }
 `;
 
-export const ProjectDescription = styled.p``;
+export const ProjectDescription = styled.p`
+  @media (max-width: 637px) {
+    margin-bottom: 1rem;
+  }
+`;
+
+export const SocialLink = styled.div`
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
+`;
+
+export const SocialWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+export const Logo = styled.img``;
