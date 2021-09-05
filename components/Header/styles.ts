@@ -9,6 +9,7 @@ export const Header = styled.header`
 
 export const Title = styled.h1`
   font-size: 2.3rem;
+  font-weight: normal;
   color: ${({ theme }) => theme.colors.yellow};
   text-decoration: underline;
   word-spacing: 3px;

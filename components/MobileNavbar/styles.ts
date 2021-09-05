@@ -5,7 +5,7 @@ export const Btn = styled.div`
   right: 2rem;
   top: 2rem;
   width: 25px;
-  height: 25px;
+  height: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -120,8 +120,40 @@ export const NavbarItems = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
+  .run-up {
+    &:nth-child(1) {
+      animation: runUp 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 0.6s;
+    }
+
+    &:nth-child(2) {
+      animation: runUp 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 0.9s;
+    }
+
+    &:nth-child(3) {
+      animation: runUp 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 1.2s;
+    }
+
+    @keyframes runUp {
+      from {
+        top: 30%;
+        opacity: 0;
+      }
+      to {
+        top: 0;
+        opacity: 1;
+      }
+    }
+  }
+
   a {
     position: relative;
+    opacity: 0;
     text-decoration: none;
     font-size: 2.3rem;
     width: fit-content;
@@ -134,22 +166,6 @@ export const NavbarItems = styled.div`
     &.active {
       color: ${({ theme }) => theme.colors.yellow2};
       background-clip: text;
-    }
-
-    &::after {
-      position: absolute;
-      content: '';
-      bottom: -4px;
-      left: 0;
-      background: linear-gradient(to right, #8b743d, #ecdfbf);
-      height: 1px;
-      width: 0;
-      transition: all 0.3s;
-    }
-
-    &:hover::after,
-    &.active::after {
-      width: 100%;
     }
 
     &:not(:last-child) {

@@ -90,8 +90,8 @@ export const Project = styled.div`
   display: flex;
   box-shadow: 5px 5px 15px -6px rgba(0, 0, 0, 0.1);
   background: ${({ theme }) => theme.colors.white};
-  border-radius: 5px;
   overflow: hidden;
+  padding: 1rem;
 
   &:not(:last-child) {
     margin-bottom: 3rem;
@@ -99,8 +99,13 @@ export const Project = styled.div`
 `;
 
 export const Image = styled(Avatar)`
-  width: 200px;
-  height: 200px;
+  width: 20%;
+  height: auto;
+
+  img {
+    width: 100%;
+    object-fit: contain;
+  }
 
   @media (max-width: 637px) {
     display: none;
@@ -120,7 +125,7 @@ export const ProjectInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1rem 1rem 1rem 2rem;
+  padding: 1rem 0 0 2rem;
 
   & > button {
     margin-top: auto;

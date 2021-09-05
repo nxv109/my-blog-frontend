@@ -34,15 +34,14 @@ export const PostItem = styled.a`
   }
 
   &:not(:last-child) {
-    padding-bottom: 2rem;
+    padding-bottom: 5px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   }
 `;
 
 export const Thumbnail = styled.div`
   position: relative;
-  width: 150px;
-  max-width: 100%;
+  width: 20%;
   margin-right: 1rem;
 
   img {
@@ -54,7 +53,7 @@ export const Thumbnail = styled.div`
 `;
 
 export const Info = styled.div`
-  width: 100%;
+  width: 80%;
 `;
 
 export const Title = styled.div`
@@ -65,6 +64,14 @@ export const Title = styled.div`
 
 export const Summary = styled.div`
   width: 100%;
+
+  @media (max-width: 1024px) {
+    display: inline-block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 // post

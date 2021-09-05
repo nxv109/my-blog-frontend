@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,8 +16,22 @@ import {
 
 import * as S from './styles';
 
+function addAnimation(showNavbar: boolean) {
+  const linkElms = document.getElementsByClassName('link-items');
+
+  Array.from(linkElms).forEach((link: any) => {
+    link.classList.toggle('run-up', showNavbar);
+  });
+}
+
 function MobileNavbar() {
   const [showNavbar, setShowNavbar] = useState(false);
+
+  useEffect(() => {
+    addAnimation(showNavbar);
+
+    return () => addAnimation(showNavbar);
+  }, [showNavbar]);
 
   const handleToggleNavbar = () => {
     setShowNavbar(!showNavbar);
@@ -43,7 +57,9 @@ function MobileNavbar() {
             return (
               <Link href={item.pathname} key={index}>
                 <a
-                  className={router.pathname === item.pathname ? 'active' : ''}
+                  className={`${
+                    router.pathname === item.pathname ? 'active' : ''
+                  } link-items`}
                   onClick={handleHideNavbar}
                 >
                   {item.name}
@@ -68,7 +84,9 @@ function MobileNavbar() {
             return (
               <Link href={item.pathname} key={index}>
                 <a
-                  className={router.pathname === item.pathname ? 'active' : ''}
+                  className={`${
+                    router.pathname === item.pathname ? 'active' : ''
+                  } link-items`}
                   onClick={handleHideNavbar}
                 >
                   {item.name}
@@ -79,6 +97,11 @@ function MobileNavbar() {
         </S.NavbarItems>
       );
     }
+  };
+
+  const styles = {
+    left: showNavbar ? 0 : '150%',
+    opacity: showNavbar ? 1 : 0,
   };
 
   return (
@@ -97,7 +120,7 @@ function MobileNavbar() {
           </>
         )}
       </S.Btn>
-      <S.NavbarWrapper style={{ left: showNavbar ? 0 : '150%' }}>
+      <S.NavbarWrapper style={styles}>
         <S.Navbar>
           <Logo isDisabledLink />
           {renderNavbarItems()}
