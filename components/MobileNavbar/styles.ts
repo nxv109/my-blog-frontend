@@ -139,6 +139,12 @@ export const NavbarItems = styled.div`
       animation-delay: 1.2s;
     }
 
+    &:nth-child(4) {
+      animation: runUp 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 1.5s;
+    }
+
     @keyframes runUp {
       from {
         top: 30%;

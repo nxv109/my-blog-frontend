@@ -41,4 +41,8 @@ export const NAVBAR_ITEMS_ADMIN = [
     name: 'Posts',
     pathname: '/admin/posts',
   },
+  {
+    name: 'My CV',
+    pathname: '/my-cv',
+  },
 ] as const;

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Button from '@/components/Button';
+import Head from '@/components/Head';
 
 import { projects } from '@/constants/projects';
 
@@ -15,6 +16,7 @@ function AboutMe() {
 
   return (
     <S.Wrapper>
+      <Head title="About me" />
       <Header title="About me" />
       <Body noPadding>
         <S.InnerWrapper>

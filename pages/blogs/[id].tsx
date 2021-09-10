@@ -2,6 +2,7 @@ import Header from '@/components/Header';
 import Body from '@/components/Body';
 import postService from '@/services/postService';
 import { IPostItems } from '@/typings/posts';
+import Head from '@/components/Head';
 
 import * as S from '@/styles/pages/blogs';
 
@@ -12,6 +13,7 @@ type Params = {
 function Posts({ post }: { post: IPostItems }) {
   return (
     <S.Wrapper>
+      <Head title={post.title} />
       <Header title="Posts" />
       <Body>
         <S.PostWrapper>

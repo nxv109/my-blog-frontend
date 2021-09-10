@@ -34,13 +34,23 @@ const reset = css`
       box-sizing: inherit;
     }
   }
+
+  @media print {
+    body {
+      -webkit-print-color-adjust: exact;
+    }
+  }
 `;
 
 const base = css`
   html,
   body {
     height: 100%;
-    overflow: hidden;
+  }
+
+  @page {
+    size: 794px 1123px;
+    margin: 20px;
   }
 
   html {
@@ -58,6 +68,7 @@ const base = css`
     -moz-osx-font-smoothing: grayscale;
     max-width: 100%;
     margin: 0 auto;
+    overflow: hidden;
   }
 
   main {

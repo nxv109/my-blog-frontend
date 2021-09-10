@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Loader from '@/components/Loader';
+import Head from '@/components/Head';
 
 import postService from '@/services/postService';
 
@@ -17,6 +18,7 @@ function Blogs({ posts }: { posts: IPostItems[] }) {
 
   return (
     <S.Wrapper>
+      <Head title="Blogs" />
       <Header title="Blogs" />
       <Body>
         <S.PostWrapper>
