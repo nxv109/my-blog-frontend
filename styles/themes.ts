@@ -25,7 +25,7 @@ const fontWeights = {
 } as const;
 
 const fontFamilies = {
-  en: 'Open Sans, sans-serif',
+  en: 'Fira Sans, Open Sans, sans-serif',
 } as const;
 
 const transitions = {
@@ -36,8 +36,7 @@ const transitions = {
   },
 } as const;
 
-const zIndexes = {
-} as const;
+const zIndexes = {} as const;
 
 export default {
   colors,

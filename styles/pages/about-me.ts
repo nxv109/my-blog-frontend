@@ -70,7 +70,13 @@ export const Profession = styled.h3`
   margin-bottom: 1rem;
 `;
 
-export const BioText = styled.p``;
+export const BioText = styled.div`
+  & > p {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+`;
 
 export const SectionBox = styled.div``;
 

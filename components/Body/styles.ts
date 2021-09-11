@@ -17,7 +17,8 @@ export const Body = styled.section`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   ${({ $noPadding }: { $noPadding?: boolean }) => {
     if (!$noPadding) return null;

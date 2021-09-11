@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
+  font-family: ${({ theme }) => theme.fontFamilies.en};
   outline: none;
   border: none;
   /* border-radius: 5px; */
@@ -20,7 +21,7 @@ export const Button = styled.button`
 
   ${({ $size }: { $size?: string }) => {
     if (!$size) return null;
-    
+
     const sizes: Record<string, any> = {
       small: css`
         padding: 0.5rem 1rem;

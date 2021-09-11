@@ -103,7 +103,7 @@ const base = css`
     );
     width: 1200px;
     max-width: 100%;
-    height: 70%;
+    height: 90%;
     margin: auto;
     backdrop-filter: blur(2px);
     box-shadow: ${({ theme }) =>

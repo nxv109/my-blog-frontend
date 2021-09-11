@@ -38,11 +38,21 @@ function AboutMe() {
               <S.BioBox>
                 <S.Profession>Front-end Developer.</S.Profession>
                 <S.BioText>
-                  I'm a Front-end Developer always happy, smiley, and full of
-                  energy, I have experience in Website development and nice work
-                  with Reactjs, Redux, Nodejs, MongoDB, Html, Css,...
-                  Additionally, I have knowledge about Vuejs, Mobx, Grapql,...
-                  And ready to study other techs.
+                  <p>
+                    Hi! My name is Vinh, I am an enthusiastic and optimistic
+                    front-end Developer, with nearly two years of experience and
+                    have worked through many different projects for Japanese
+                    companies such as E-commerce, landing pages,...I have a
+                    Bachelor of Practice in Software Engineering.
+                  </p>
+                  <p>
+                    I have a certain understanding of HTML, CSS, Javascript,
+                    ReactJS, Bootstrap, Typescript, Styled-components, NodeJS,
+                    MongoDB, Nextjs, Vuejs, and Git.
+                  </p>
+                  <p>
+                    My mission is to create products that satisfy customers.
+                  </p>
                 </S.BioText>
               </S.BioBox>
             </S.InfoRight>

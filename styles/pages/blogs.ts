@@ -4,10 +4,6 @@ export const Wrapper = styled.section`
   padding: 3rem;
   width: 100%;
   height: 100%;
-
-  img {
-    width: 100%;
-  }
 `;
 
 export const PostWrapper = styled.div`
@@ -87,5 +83,25 @@ export const PostAvatar = styled.div`
 `;
 
 export const PostContent = styled.p`
-  text-align: justify;
+  * {
+    line-height: 3rem;
+    font-family: ${({ theme }) => theme.fontFamilies.en} !important;
+  }
+
+  p {
+    font-size: ${({ theme }) => theme.fontSizes.md} !important;
+  }
+
+  blockquote {
+    background: ${({ theme }) => theme.colors.gray};
+    border-left: 5px solid ${({ theme }) => theme.colors.yellow};
+    padding: 0 1rem;
+  }
+
+  pre {
+    background: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.white};
+    padding: 0 1rem;
+    overflow-x: auto;
+  }
 `;
