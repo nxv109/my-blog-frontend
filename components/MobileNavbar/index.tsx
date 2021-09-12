@@ -50,7 +50,7 @@ function MobileNavbar() {
   };
 
   const renderNavbarItems = () => {
-    if (user && user.role === 1) {
+    if (user?.data && user.data.role === 1) {
       return (
         <S.NavbarItems>
           {NAVBAR_ITEMS_ADMIN.map((item, index) => {
@@ -76,7 +76,8 @@ function MobileNavbar() {
             if (
               EXCLUDE_PATH_NAME.find(
                 router =>
-                  router.pathname === item.pathname && router.isAuth !== !!user,
+                  router.pathname === item.pathname &&
+                  router.isAuth !== !!user?.data,
               )
             )
               return null;
@@ -124,7 +125,7 @@ function MobileNavbar() {
         <S.Navbar>
           <Logo isDisabledLink />
           {renderNavbarItems()}
-          {user ? (
+          {user?.data ? (
             <S.UserSection>
               <Button className="primary" onClick={handleLogout}>
                 Logout

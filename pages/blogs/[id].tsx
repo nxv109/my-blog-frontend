@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import postService from '@/services/postService';
@@ -11,10 +13,16 @@ type Params = {
 };
 
 function Posts({ post }: { post: IPostItems }) {
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+    setContent(post.content);
+  }, []);
+
   return (
     <S.Wrapper>
       <Head title={post.title} />
-      <Header title="Posts" />
+      <Header title="Posts" showBackButton />
       <Body>
         <S.PostWrapper>
           <S.PostTitle>{post.title}</S.PostTitle>
@@ -23,9 +31,7 @@ function Posts({ post }: { post: IPostItems }) {
               <img src={post.article_thumbnail} alt={post.title} />
             </S.PostAvatar>
           )}
-          <S.PostContent
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          ></S.PostContent>
+          <S.PostContent dangerouslySetInnerHTML={{ __html: content }} />
         </S.PostWrapper>
       </Body>
     </S.Wrapper>

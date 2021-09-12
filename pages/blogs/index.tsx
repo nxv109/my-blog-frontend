@@ -25,14 +25,14 @@ function Blogs({ posts }: { posts: IPostItems[] }) {
           {posts.map((post: IPostItems) => (
             <Link href={`/blogs/${post._id}`} key={post._id} passHref>
               <S.PostItem>
-                <S.Thumbnail>
+                {/* <S.Thumbnail>
                   <Image
                     src={post.article_thumbnail || DEFAULT_IMAGES.NEWS}
                     width={170}
                     height={150}
                     alt={post.title}
                   />
-                </S.Thumbnail>
+                </S.Thumbnail> */}
                 <S.Info>
                   <S.Title>{post.title}</S.Title>
                   <S.Summary>{post.summary}</S.Summary>

@@ -11,7 +11,7 @@ import * as S from '@/styles/pages/profile';
 
 function Profile() {
   const user = useUser();
-  if (!user) return <p>Login</p>;
+  if (!user?.data) return <p>Login</p>;
 
   return (
     <S.Wrapper>
@@ -19,14 +19,14 @@ function Profile() {
       <Body>
         <S.Avatar>
           <Image
-            src={user.avatar || DEFAULT_IMAGES.AVATAR}
+            src={user.data.avatar || DEFAULT_IMAGES.AVATAR}
             layout="fill"
             alt="avatar"
           />
         </S.Avatar>
         <S.Info>
-          <S.Name>{user.name}</S.Name>
-          <S.Bio>{user.bio}</S.Bio>
+          <S.Name>{user.data.name}</S.Name>
+          <S.Bio>{user.data.bio}</S.Bio>
         </S.Info>
       </Body>
     </S.Wrapper>

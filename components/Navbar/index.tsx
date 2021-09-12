@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
+import Loader from '@/components/Loader';
 import useUser from '@/hooks/useUser';
 
 import webStorage from '@/utils/webStorage';
@@ -13,6 +14,7 @@ import {
 } from '@/constants/navbarItem';
 
 import * as S from './styles';
+import React from 'react';
 
 function Navbar() {
   const router = useRouter();
@@ -24,7 +26,7 @@ function Navbar() {
   };
 
   const renderNavbarItems = () => {
-    if (user && user.role === 1) {
+    if (user?.data && user.data.role === 1) {
       return (
         <S.NavbarItems>
           {NAVBAR_ITEMS_ADMIN.map((item, index) => {
@@ -47,7 +49,8 @@ function Navbar() {
             if (
               EXCLUDE_PATH_NAME.find(
                 router =>
-                  router.pathname === item.pathname && router.isAuth !== !!user,
+                  router.pathname === item.pathname &&
+                  router.isAuth !== !!user?.data,
               )
             )
               return null;
@@ -67,11 +70,13 @@ function Navbar() {
     }
   };
 
+  if (user?.isLoading) return <Loader />;
+
   return (
     <S.Navbar>
       <Logo />
       {renderNavbarItems()}
-      {user ? (
+      {user?.data ? (
         <S.UserSection>
           <Button className="primary" onClick={handleLogout}>
             Logout

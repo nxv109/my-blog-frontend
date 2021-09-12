@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: inline-block;
   margin-bottom: 2rem;
+`;
+
+export const Left = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const BackButton = styled.span`
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.yellow};
 `;
 
 export const Title = styled.h1`

@@ -1,11 +1,11 @@
 export const NAVBAR_ITEMS_CLIENT = [
   {
-    name: 'About me',
-    pathname: '/about-me',
-  },
-  {
     name: 'Blogs',
     pathname: '/blogs',
+  },
+  {
+    name: 'About me',
+    pathname: '/about-me',
   },
   {
     name: 'My profile',

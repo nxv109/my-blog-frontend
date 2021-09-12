@@ -9,7 +9,7 @@ const ROUTES = {
   LOGIN: '/login',
   HOME: '/',
   404: '/404',
-  ADMIN_POST_LIST: '/admin/posts'
+  ADMIN_POST_LIST: '/admin/posts',
 } as const;
 
 const ERROR_CODES = {
@@ -24,7 +24,7 @@ const USER_ROLES = {
 
 const DEFAULT_IMAGES = {
   NEWS: 'https://i.ibb.co/CQbCYsz/news-default.png',
-  AVATAR: 'https://i.ibb.co/rH3v5bX/avatar-default.png'
-}
+  AVATAR: 'https://i.ibb.co/rH3v5bX/avatar-default.png',
+} as const;
 
 export { APP_KEYS, ROUTES, ERROR_CODES, USER_ROLES, DEFAULT_IMAGES };

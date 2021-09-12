@@ -14,9 +14,7 @@ interface IProps {
 function AuthLayout({ children }: IProps) {
   const user = useUser();
 
-  if (!isClient || !user) return <Loader />;
-
-  if (user.role !== USER_ROLES.ADMIN) {
+  if (!user?.data || user.data.role !== USER_ROLES.ADMIN) {
     return <Notfound />;
   }
 

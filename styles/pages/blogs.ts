@@ -10,8 +10,6 @@ export const PostWrapper = styled.div`
   width: 100%;
 
   img {
-    max-width: 70% !important;
-    min-width: 50% !important;
     display: block;
     margin: 0 auto;
   }
@@ -26,11 +24,11 @@ export const PostItem = styled.a`
   cursor: pointer;
 
   &:not(:first-child) {
-    padding-top: 2rem;
+    padding-top: 1rem;
   }
 
   &:not(:last-child) {
-    padding-bottom: 5px;
+    padding-bottom: 1rem;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   }
 `;
@@ -41,38 +39,37 @@ export const Thumbnail = styled.div`
   margin-right: 1rem;
 
   img {
-    max-width: 100% !important;
-    min-width: 100% !important;
+    width: 100%;
     object-fit: cover;
-    margin: 0 !important;
+    margin: 0;
   }
 `;
 
-export const Info = styled.div`
-  width: 80%;
-`;
+export const Info = styled.div``;
 
 export const Title = styled.div`
   width: 100%;
   text-transform: uppercase;
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
+  margin-bottom: 0.4rem;
 `;
 
 export const Summary = styled.div`
-  width: 100%;
+  color: ${({ theme }) => theme.colors.gray1};
+  font-size: 15px;
 
-  @media (max-width: 1024px) {
-    display: inline-block;
-    width: 80%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  /* truncate multiline */
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 // post
 export const PostTitle = styled.h1`
-  margin: 1rem 0;
+  margin: 1rem 0 3rem;
   text-transform: capitalize;
   text-align: center;
   font-size: 2.5rem;
@@ -80,6 +77,10 @@ export const PostTitle = styled.h1`
 
 export const PostAvatar = styled.div`
   margin: 2rem 0;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const PostContent = styled.p`
@@ -95,7 +96,7 @@ export const PostContent = styled.p`
   blockquote {
     background: ${({ theme }) => theme.colors.gray};
     border-left: 5px solid ${({ theme }) => theme.colors.yellow};
-    padding: 0 1rem;
+    padding: 1rem;
   }
 
   pre {

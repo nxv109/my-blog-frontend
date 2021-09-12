@@ -17,7 +17,7 @@ function AboutMe() {
   return (
     <S.Wrapper>
       <Head title="About me" />
-      <Header title="About me" />
+      <Header title="About me" showBackButton />
       <Body noPadding>
         <S.InnerWrapper>
           <S.InfoBox>

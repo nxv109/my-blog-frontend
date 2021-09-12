@@ -9,14 +9,17 @@ function useUser() {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
     if (!token) return null;
 
-    const { data } = useQuery<{ data: IUsers }>({
+    const { data, isLoading } = useQuery<{ data: IUsers; isLoading: boolean }>({
       url: '/users/profiles',
       headers: {
         Authorization: token,
       },
     });
 
-    return data?.data?.data;
+    return {
+      data: data?.data?.data,
+      isLoading,
+    };
   }
 
   return null;
