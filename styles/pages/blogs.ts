@@ -8,11 +8,6 @@ export const Wrapper = styled.section`
 
 export const PostWrapper = styled.div`
   width: 100%;
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
 `;
 
 export const PostItem = styled.a`
@@ -104,5 +99,11 @@ export const PostContent = styled.p`
     color: ${({ theme }) => theme.colors.white};
     padding: 0 1rem;
     overflow-x: auto;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
   }
 `;
