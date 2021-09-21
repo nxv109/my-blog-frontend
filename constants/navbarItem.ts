@@ -17,7 +17,7 @@ export const NAVBAR_ITEMS_CLIENT = [
   },
 ] as const;
 
-export const EXCLUDE_PATH_NAME = [
+export const AUTH_ROUTES = [
   {
     pathname: '/profile',
     isAuth: true,
@@ -26,7 +26,7 @@ export const EXCLUDE_PATH_NAME = [
     pathname: '/about-me',
     isAuth: false,
   },
-];
+] as const;
 
 export const NAVBAR_ITEMS_ADMIN = [
   {

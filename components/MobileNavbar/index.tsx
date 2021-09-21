@@ -10,7 +10,7 @@ import webStorage from '@/utils/webStorage';
 import {
   NAVBAR_ITEMS_CLIENT,
   NAVBAR_ITEMS_ADMIN,
-  EXCLUDE_PATH_NAME,
+  AUTH_ROUTES,
 } from '@/constants/navbarItem';
 
 import { IUsers } from '@/typings/users';
@@ -73,9 +73,10 @@ function MobileNavbar({ user }: { user: IUsers }) {
         <S.NavbarItems>
           {NAVBAR_ITEMS_CLIENT.map((item, index) => {
             if (
-              EXCLUDE_PATH_NAME.find(
+              AUTH_ROUTES.find(
                 router =>
-                  router.pathname === item.pathname && router.isAuth !== !!user,
+                  router.pathname === item.pathname &&
+                  router.isAuth !== !!user._id,
               )
             )
               return null;

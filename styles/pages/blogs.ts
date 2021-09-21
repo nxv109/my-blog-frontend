@@ -101,12 +101,12 @@ export const PostContent = styled.p`
   }
 
   pre {
-    background: ${({ theme }) => theme.colors.blue};
-    color: ${({ theme }) => theme.colors.white};
-    padding: 0 1rem;
-    overflow-x: auto;
+    background: ${({ theme }) => theme.colors.gray2};
+    color: ${({ theme }) => theme.colors.black};
+    padding: 1rem;
     margin: 0;
     max-height: 500px;
+    overflow-x: auto;
   }
 
   img {

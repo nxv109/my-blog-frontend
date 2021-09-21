@@ -9,7 +9,13 @@ function useUser() {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
     if (!token)
       return {
-        data: { role: USER_ROLES.USER },
+        data: {
+          role: USER_ROLES.USER,
+          avatar: '',
+          name: '',
+          bio: '',
+          create_at: '',
+        },
       };
 
     const { data, isLoading } = useQuery<{ data: IUsers; isLoading: boolean }>({
