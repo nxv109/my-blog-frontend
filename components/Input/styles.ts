@@ -8,7 +8,7 @@ export const Input = styled.input`
   border: none;
   padding: 1.5rem 0;
   box-shadow: 0 1px 0 ${({ theme }) => rgba(theme.colors.blue, 0.2)};
-  font-size: 1.4rem;
+  font-size: ${({ theme }) => theme.fontSizes.md};
 
   &::placeholder {
     letter-spacing: 2px;

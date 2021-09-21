@@ -35,12 +35,18 @@ export const FormGroup = styled.div`
 `;
 
 export const ActionBtn = styled.div`
-  text-align: center;
   cursor: pointer;
+  width: 20px;
+  margin: auto;
 
   a {
     color: ${({ theme }) => theme.colors.black};
     text-decoration: none;
+    text-align: center;
+
+    img {
+      width: 100%;
+    }
   }
 
   ${({ $type }: { $type?: string }) => {

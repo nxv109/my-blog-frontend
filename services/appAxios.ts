@@ -6,7 +6,7 @@ import { APP_KEYS, ROUTES, ERROR_CODES } from 'constants/index';
 
 const config = {
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 10000,
+  timeout: 1000 * 60,
 };
 
 const request = axios.create(config);

@@ -104,7 +104,7 @@ function Edit({
             </S.FormGroup>
             <S.FormGroup>
               <InputFile
-                label={formData.article_thumbnail}
+                label={formData.article_thumbnail || 'Select a file'}
                 type="file"
                 name="article_thumbnail"
                 onChange={handleUploadThumbnail}

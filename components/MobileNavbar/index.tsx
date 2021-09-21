@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
-import useUser from '@/hooks/useUser';
 
 import webStorage from '@/utils/webStorage';
 import {
@@ -13,6 +12,8 @@ import {
   NAVBAR_ITEMS_ADMIN,
   EXCLUDE_PATH_NAME,
 } from '@/constants/navbarItem';
+
+import { IUsers } from '@/typings/users';
 
 import * as S from './styles';
 
@@ -24,7 +25,8 @@ function addAnimation(showNavbar: boolean) {
   });
 }
 
-function MobileNavbar() {
+function MobileNavbar({ user }: { user: IUsers }) {
+  const router = useRouter();
   const [showNavbar, setShowNavbar] = useState(false);
 
   useEffect(() => {
@@ -41,16 +43,13 @@ function MobileNavbar() {
     setShowNavbar(false);
   };
 
-  const router = useRouter();
-  const user = useUser();
-
   const handleLogout = () => {
     webStorage.removeAll();
     router.push('/login');
   };
 
   const renderNavbarItems = () => {
-    if (user?.data && user.data.role === 1) {
+    if (user && user.role === 1) {
       return (
         <S.NavbarItems>
           {NAVBAR_ITEMS_ADMIN.map((item, index) => {
@@ -76,8 +75,7 @@ function MobileNavbar() {
             if (
               EXCLUDE_PATH_NAME.find(
                 router =>
-                  router.pathname === item.pathname &&
-                  router.isAuth !== !!user?.data,
+                  router.pathname === item.pathname && router.isAuth !== !!user,
               )
             )
               return null;
@@ -125,7 +123,7 @@ function MobileNavbar() {
         <S.Navbar>
           <Logo isDisabledLink />
           {renderNavbarItems()}
-          {user?.data ? (
+          {user ? (
             <S.UserSection>
               <Button className="primary" onClick={handleLogout}>
                 Logout

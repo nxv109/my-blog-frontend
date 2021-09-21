@@ -80,18 +80,24 @@ export const PostAvatar = styled.div`
 
 export const PostContent = styled.p`
   * {
-    line-height: 3rem;
     font-family: ${({ theme }) => theme.fontFamilies.en} !important;
+    line-height: 2.5rem;
   }
 
   p {
     font-size: ${({ theme }) => theme.fontSizes.md} !important;
+    line-height: 1.6rem;
+  }
+
+  & > * {
+    margin: 2.5rem 0;
   }
 
   blockquote {
-    background: ${({ theme }) => theme.colors.gray};
+    background: ${({ theme }) => theme.colors.gray2};
     border-left: 5px solid ${({ theme }) => theme.colors.yellow};
     padding: 1rem;
+    margin: 0;
   }
 
   pre {
@@ -99,6 +105,8 @@ export const PostContent = styled.p`
     color: ${({ theme }) => theme.colors.white};
     padding: 0 1rem;
     overflow-x: auto;
+    margin: 0;
+    max-height: 500px;
   }
 
   img {

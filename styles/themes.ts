@@ -8,6 +8,7 @@ const colors = {
   blue: '#12172d',
   gray: '#f4f4f4',
   gray1: '#696969',
+  gray2: '#00000005',
   red: '#ef233c',
 } as const;
 

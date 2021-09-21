@@ -30,6 +30,5 @@ export const Body = styled.section`
   p {
     letter-spacing: 1px;
     word-spacing: 2px;
-    line-height: 2rem;
   }
 `;
