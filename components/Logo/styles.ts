@@ -7,7 +7,6 @@ export const Logo = styled.a`
   margin-bottom: 5rem;
   text-decoration: none;
   border-radius: 5px;
-  background: ${({ theme }) => theme.colors.white};
 
   @media (max-width: 1024px) {
     max-width: 50%;
