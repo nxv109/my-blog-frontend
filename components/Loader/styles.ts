@@ -4,7 +4,8 @@ const pl2 = keyframes`
   100% {box-shadow: 0 0 0 40px #0000}
 `;
 
-export const Loader = styled.div`
+export const Loader = styled.span`
+  display: block;
   width: 20px;
   height: 20px;
   border-radius: 50%;

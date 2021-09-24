@@ -38,7 +38,7 @@ function Posts({ post }: { post: IPostItems }) {
   );
 }
 
-export const getServerSideProps = async ({ params }: { params: Params }) => {
+export const getStaticProps = async ({ params }: { params: Params }) => {
   try {
     const { data } = await postService.getPosts({ url: `/posts/${params.id}` });
 
@@ -52,6 +52,19 @@ export const getServerSideProps = async ({ params }: { params: Params }) => {
       notFound: true,
     };
   }
+};
+
+export const getStaticPaths = async () => {
+  try {
+    const { data } = await postService.getPosts({ url: '/posts' });
+    const posts = data.data;
+
+    const paths = posts.map((post: IPostItems) => ({
+      params: { id: post._id },
+    }));
+
+    return { paths, fallback: 'blocking' };
+  } catch {}
 };
 
 export default Posts;

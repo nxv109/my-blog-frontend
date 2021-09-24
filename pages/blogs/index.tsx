@@ -9,7 +9,6 @@ import Head from '@/components/Head';
 import postService from '@/services/postService';
 
 import { IPostItems } from '@/typings/posts';
-import { DEFAULT_IMAGES } from '@/constants';
 
 import * as S from '@/styles/pages/blogs';
 
@@ -46,14 +45,15 @@ function Blogs({ posts }: { posts: IPostItems[] }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   try {
     const { data } = await postService.getPosts({ url: '/posts' });
 
     return {
       props: {
         posts: data.data,
-      },
+      }, 
+      revalidate: 15,
     };
   } catch (error) {
     return {

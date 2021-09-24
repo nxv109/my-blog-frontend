@@ -42,7 +42,7 @@ function AboutMe() {
                     Hi! My name is Vinh, I am an enthusiastic and optimistic
                     front-end Developer, with nearly two years of experience and
                     have worked through many different projects for Japanese
-                    companies such as E-commerce, landing pages,...I have a
+                    companies such as E-commerce, management system, product promotion, branding...I have a
                     Bachelor of Practice in Software Engineering.
                   </p>
                   <p>

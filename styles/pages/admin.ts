@@ -23,8 +23,8 @@ export const Post = styled.div`
 
   .add-new {
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 30px;
+    right: 15px;
   }
 `;
 

@@ -17,6 +17,12 @@ const projects = [
     description: '',
     url: 'https://quiz-mern-stack.herokuapp.com/',
   },
+  {
+    name: 'My Timeline',
+    imgURL: 'https://i.ibb.co/CQbCYsz/news-default.png',
+    description: '',
+    url: 'https://nxv109.github.io/timeline',
+  },
 ] as const;
 
 export { projects };

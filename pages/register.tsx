@@ -96,6 +96,7 @@ function Register() {
         </S.FormGroup>
         <S.FormGroup>
           <Input
+            type="password"
             name="password"
             placeholder="password"
             onChange={handleChange}
