@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const Navbar = styled.nav`
-  background: linear-gradient(
-    to right bottom,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.3)
-  );
+  background: url(https://i.ibb.co/wwb3vG5/dotted-bg.png);
   width: 20%;
   height: 100%;
   padding: 3rem;

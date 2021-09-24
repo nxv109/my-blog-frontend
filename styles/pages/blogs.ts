@@ -101,7 +101,7 @@ export const PostContent = styled.p`
   }
 
   pre {
-    background: ${({ theme }) => theme.colors.gray2};
+    background: ${({ theme }) => theme.colors.gray3};
     color: ${({ theme }) => theme.colors.black};
     padding: 1rem;
     margin: 0;

@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
 
 export const TableWrapper = styled.div`
   & > table {
-    min-width: 820px;
+    min-width: 880px;
   }
 `;
 

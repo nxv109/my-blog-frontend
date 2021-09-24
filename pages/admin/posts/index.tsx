@@ -22,6 +22,7 @@ import * as S from '@/styles/pages/admin';
 
 function Posts() {
   const [posts, setPosts] = useState<IPostItems[]>([]);
+  const [loadingPage, setLoadingPage] = useState(false);
   const router = useRouter();
 
   const { data, isLoading } = useQuery<{ data: IPostItems[] }>({
@@ -38,6 +39,7 @@ function Posts() {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
 
     try {
+      setLoadingPage(true);
       const postsData = await postService.deletePosts({
         url: `/posts/${id}`,
         headers: {
@@ -48,10 +50,12 @@ function Posts() {
       setPosts(postsData.data.data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingPage(false);
     }
   };
 
-  if (isLoading || !posts) return <Loader />;
+  if (isLoading || loadingPage || !posts) return <Loader />;
 
   return (
     <AuthLayout>
