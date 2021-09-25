@@ -9,7 +9,7 @@ function Categories() {
     <AuthLayout>
       <S.Wrapper>
         <Header title="Categories" />
-        <Body>Categories</Body>
+        <Body>Coming soon</Body>
       </S.Wrapper>
     </AuthLayout>
   );

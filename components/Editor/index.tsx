@@ -19,16 +19,14 @@ export default function MyEditor({
   const editorRef = useRef(null);
 
   useEffect(() => {
-    if (value) {
-      const blocksFromHtml = htmlToDraft(value);
-      const { contentBlocks, entityMap } = blocksFromHtml;
+    const blocksFromHtml = htmlToDraft(value);
+    const { contentBlocks, entityMap } = blocksFromHtml;
 
-      setEditorState(() =>
-        EditorState.createWithContent(
-          ContentState.createFromBlockArray(contentBlocks, entityMap),
-        ),
-      );
-    }
+    setEditorState(() =>
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(contentBlocks, entityMap),
+      ),
+    );
   }, []);
 
   function debounce(content: any) {

@@ -2,6 +2,7 @@ import Image from 'next/image';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
+import Head from '@/components/Head';
 
 import useUser from '@/hooks/useUser';
 
@@ -15,7 +16,8 @@ function Profile() {
 
   return (
     <S.Wrapper>
-      <Header title="About Myself" />
+      <Head title={user.data.name || 'Profiles'} />
+      <Header title="Profiles" />
       <Body>
         <S.Avatar>
           <Image

@@ -9,7 +9,7 @@ function Dashboard() {
     <AuthLayout>
       <S.Wrapper>
         <Header title="Dashboard" />
-        <Body>Dashboard</Body>
+        <Body>Coming soon</Body>
       </S.Wrapper>
     </AuthLayout>
   );

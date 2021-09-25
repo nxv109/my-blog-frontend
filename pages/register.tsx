@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import uploadService from '@/services/uploadService';
@@ -13,6 +14,7 @@ import InputFile from '@/components/InputFile';
 import Loader from '@/components/Loader';
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
+import Head from '@/components/Head';
 
 import * as S from '@/styles/pages/register';
 
@@ -72,6 +74,7 @@ function Register() {
 
   return (
     <S.Wrapper>
+      <Head title="Register" />
       <Logo />
       <S.Container>
         <S.FormGroup>
@@ -110,6 +113,9 @@ function Register() {
         >
           {isUploading ? 'Uploading...' : 'Register'}
         </Button>
+        <Link href="/login" passHref>
+          <S.LoginLink>Login</S.LoginLink>
+        </Link>
       </S.Container>
     </S.Wrapper>
   );

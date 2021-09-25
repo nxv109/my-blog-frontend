@@ -36,3 +36,11 @@ export const Logo = styled.div`
   margin-bottom: 5rem;
   background: #12172d;
 `;
+
+export const RegisterLink = styled.a`
+  display: block;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 14px;
+  margin-top: 1rem;
+`

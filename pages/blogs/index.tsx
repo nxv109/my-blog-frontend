@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -53,7 +52,7 @@ export const getStaticProps = async () => {
       props: {
         posts: data.data,
       }, 
-      revalidate: 15,
+      revalidate: 10,
     };
   } catch (error) {
     return {

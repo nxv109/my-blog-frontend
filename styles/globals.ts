@@ -12,13 +12,6 @@ const reset = css`
     margin: 0;
   }
 
-  ul,
-  ol {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
   textarea {
     font-family: inherit;
   }
@@ -124,6 +117,10 @@ const base = css`
 
   .editor-wrapper {
     box-shadow: 0 1px 0 ${({ theme }) => rgba(theme.colors.blue, 0.2)};
+  }
+
+  .rdw-editor-main {
+    height: 500px;
   }
 
   // circle decor background

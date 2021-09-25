@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import userService from '@/services/userService';
@@ -10,6 +11,7 @@ import Button from '@/components/Button';
 import Input from '@/components/Input';
 import Loader from '@/components/Loader';
 import Logo from '@/components/Logo';
+import Head from '@/components/Head';
 
 import * as S from '@/styles/pages/login';
 
@@ -58,6 +60,7 @@ function Login() {
 
   return (
     <S.Wrapper>
+      <Head title="Login" />
       <Logo />
       <S.Form onSubmit={handleSubmit}>
         <S.FormGroup>
@@ -78,6 +81,9 @@ function Login() {
         <Button size="large" className="primary">
           Login
         </Button>
+        <Link href="/register" passHref>
+          <S.RegisterLink>Register</S.RegisterLink>
+        </Link>
       </S.Form>
     </S.Wrapper>
   );

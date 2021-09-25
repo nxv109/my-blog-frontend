@@ -32,3 +32,11 @@ export const FormGroup = styled.div`
     margin-bottom: 2rem;
   }
 `;
+
+export const LoginLink = styled.a`
+  display: block;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 14px;
+  margin-top: 1rem;
+`

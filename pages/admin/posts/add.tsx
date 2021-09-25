@@ -77,7 +77,7 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
   return (
     <AuthLayout>
       <S.Wrapper>
-        <Header title="Add new post" />
+        <Header title="Add new post" showBackButton />
         <Body>
           <S.AddNewWrapper>
             <S.FormGroup>

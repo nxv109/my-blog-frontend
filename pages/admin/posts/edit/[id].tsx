@@ -82,7 +82,7 @@ function Edit({
   return (
     <AuthLayout>
       <S.Wrapper>
-        <Header title="Add new post" />
+        <Header title="Edit the post" showBackButton />
         <Body>
           <S.AddNewWrapper>
             <S.FormGroup>
