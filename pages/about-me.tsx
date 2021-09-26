@@ -16,7 +16,7 @@ function AboutMe() {
 
   return (
     <S.Wrapper>
-      <Head title="About me" />
+      <Head title="Nguyễn Xuân Vĩnh" />
       <Header title="About me" showBackButton />
       <Body noPadding>
         <S.InnerWrapper>
@@ -48,7 +48,7 @@ function AboutMe() {
                   <p>
                     I have a certain understanding of HTML, CSS, Javascript,
                     ReactJS, Bootstrap, Typescript, Styled-components, NodeJS,
-                    MongoDB, Nextjs, Vuejs, and Git.
+                    MongoDB, NextJS, VueJS, and Git.
                   </p>
                   <p>
                     My mission is to create products that satisfy customers.
@@ -58,7 +58,7 @@ function AboutMe() {
             </S.InfoRight>
           </S.InfoBox>
           <S.SectionBox>
-            <S.Title>Projects I did</S.Title>
+            <S.Title>My own projects</S.Title>
             <S.Content>
               {projects.map((project, index) => (
                 <S.Project key={index}>
@@ -76,7 +76,7 @@ function AboutMe() {
                     </S.ProjectDescription>
                     <Button
                       className="primary"
-                      size="normal"
+                      size="small"
                       onClick={() => handleDetail(project.url)}
                     >
                       View detail

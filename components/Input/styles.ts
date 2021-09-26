@@ -1,9 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { rgba } from 'polished';
 
 export const Input = styled.input`
   width: 100%;
-  height: 48px;
   outline: none;
   border: none;
   padding: 1.5rem 0;
@@ -14,4 +13,22 @@ export const Input = styled.input`
     letter-spacing: 2px;
     color: ${({ theme }) => rgba(theme.colors.black, 0.5)};
   }
+
+  ${({ $size }: { $size?: string }) => {
+    if (!$size) return null;
+
+    const sizes: Record<string, any> = {
+      small: css`
+        height: 35px;
+      `,
+      normal: css`
+        height: 37px;
+      `,
+      large: css`
+        height: 39px;
+      `,
+    };
+
+    return sizes[$size];
+  }}
 `;

@@ -78,9 +78,7 @@ function Login() {
             onChange={handleChange}
           />
         </S.FormGroup>
-        <Button size="large" className="primary">
-          Login
-        </Button>
+        <Button className="primary">Login</Button>
         <Link href="/register" passHref>
           <S.RegisterLink>Register</S.RegisterLink>
         </Link>

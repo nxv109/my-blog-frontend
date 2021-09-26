@@ -7,6 +7,7 @@ type Props = {
   readOnly?: boolean;
   placeholder: string;
   name: string;
+  size?: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -16,6 +17,7 @@ function Input({
   disabled = false,
   readOnly = false,
   placeholder = '',
+  size = 'normal',
   name,
   onChange,
 }: Props) {
@@ -28,6 +30,7 @@ function Input({
         disabled={disabled}
         readOnly={readOnly}
         placeholder={placeholder}
+        $size={size}
         onChange={onChange}
       />
     );
@@ -39,6 +42,7 @@ function Input({
       disabled={disabled}
       readOnly={readOnly}
       placeholder={placeholder}
+      $size={size}
       onChange={onChange}
     />
   );

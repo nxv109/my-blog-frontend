@@ -40,6 +40,7 @@ export const Avatar = styled.div`
   width: 200px;
   max-width: 100%;
   height: 300px;
+  border-radius: 10px;
   overflow: hidden;
 
   img {
@@ -83,8 +84,9 @@ export const SectionBox = styled.div``;
 export const Title = styled.h3`
   background: url('https://i.ibb.co/wwb3vG5/dotted-bg.png');
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   margin: 3rem 0;
+  text-transform: uppercase;
 `;
 
 export const Content = styled.div`
@@ -119,7 +121,7 @@ export const Image = styled(Avatar)`
 `;
 
 export const ProjectName = styled.h4`
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 
   @media (max-width: 634px) {

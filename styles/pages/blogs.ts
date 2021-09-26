@@ -45,7 +45,7 @@ export const Info = styled.div``;
 export const Title = styled.div`
   width: 100%;
   text-transform: uppercase;
-  font-size: ${({ theme }) => theme.fontSizes.lg};
+  font-size: 1.6rem;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   margin-bottom: 0.4rem;
 `;

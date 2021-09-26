@@ -145,10 +145,10 @@ function MobileNavbar({ user }: { user: IUsers }) {
             </S.UserSection>
           ) : (
             <S.UserSection>
-              <Button size="large" isLink url="/login">
+              <Button url="/login" isLink>
                 Login
               </Button>
-              <Button className="primary" size="large" isLink url="/register">
+              <Button className="primary" url="/register" isLink>
                 Register
               </Button>
             </S.UserSection>

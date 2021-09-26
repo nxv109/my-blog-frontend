@@ -4,7 +4,6 @@ export const Button = styled.button`
   font-family: ${({ theme }) => theme.fontFamilies.en};
   outline: none;
   border: none;
-  /* border-radius: 5px; */
   box-shadow: 1px 1px 0 ${({ theme }) => theme.colors.blue};
   font-size: 1.4rem;
   cursor: pointer;

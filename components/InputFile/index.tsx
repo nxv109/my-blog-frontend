@@ -8,6 +8,7 @@ type Props = {
   label?: string;
   disabled?: boolean;
   readOnly?: boolean;
+  size?: string;
   onChange: (file: Blob | string) => void;
 };
 
@@ -15,8 +16,9 @@ function InputFile({
   type = 'file',
   disabled = false,
   readOnly = false,
-  name,
   label = 'Select a file',
+  size = 'normal',
+  name,
   onChange,
 }: Props) {
   const [fileName, setFileName] = useState(label);
@@ -35,6 +37,7 @@ function InputFile({
         <S.Input
           type={type}
           name={name}
+          $size={size}
           disabled={disabled}
           readOnly={readOnly}
           onChange={handleChange}

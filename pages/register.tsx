@@ -106,7 +106,6 @@ function Register() {
           />
         </S.FormGroup>
         <Button
-          size="large"
           className="primary"
           disabled={isUploading}
           onClick={handleSubmit}
