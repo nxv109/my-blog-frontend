@@ -20,8 +20,22 @@ import * as S from './styles';
 function addAnimation(showNavbar: boolean) {
   const linkElms = document.getElementsByClassName('link-items');
 
-  Array.from(linkElms).forEach((link: any) => {
-    link.classList.toggle('run-up', showNavbar);
+  Array.from(linkElms).forEach((link: any, index: number) => {
+    if (showNavbar) {
+      link.style.marginTop = 0;
+      link.style.opacity = 1;
+      link.style.transitionDelay = `${
+        index === 0 ? index + 0.6 : index + 0.6 - 0.7 * index
+      }s`;
+    } else {
+      const linksReverse: any = Array.from(linkElms).reverse();
+
+      linksReverse[index].style.transitionDelay = `${
+        index === 0 ? index : index + 0.1 - 0.7 * index
+      }s`;
+      link.style.marginTop = '30px';
+      link.style.opacity = 0;
+    }
   });
 }
 
@@ -31,8 +45,6 @@ function MobileNavbar({ user }: { user: IUsers }) {
 
   useEffect(() => {
     addAnimation(showNavbar);
-
-    return () => addAnimation(showNavbar);
   }, [showNavbar]);
 
   const handleToggleNavbar = () => {
@@ -100,8 +112,9 @@ function MobileNavbar({ user }: { user: IUsers }) {
   };
 
   const styles = {
-    left: showNavbar ? 0 : '150%',
+    left: showNavbar ? 0 : '300px',
     opacity: showNavbar ? 1 : 0,
+    zIndex: showNavbar ? 1000 : -1,
   };
 
   return (
@@ -124,7 +137,7 @@ function MobileNavbar({ user }: { user: IUsers }) {
         <S.Navbar>
           <Logo isDisabledLink />
           {renderNavbarItems()}
-          {user ? (
+          {user && user._id ? (
             <S.UserSection>
               <Button className="primary" onClick={handleLogout}>
                 Logout

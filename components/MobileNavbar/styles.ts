@@ -10,7 +10,7 @@ export const Btn = styled.div`
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1001;
 
   @media (min-width: 1024px) {
     display: none;
@@ -72,11 +72,11 @@ export const DiagonalLine = styled.div`
 export const NavbarWrapper = styled.nav`
   position: fixed;
   top: 0;
-  left: 150%;
+  left: 300px;
   width: 100%;
   height: 100%;
   background: linear-gradient(to right bottom, rgb(35 35 35), rgb(0 0 0 / 70%));
-  transition: all 1s ease;
+  transition: all 1.3s ease;
   padding: 0 5rem;
   z-index: 1;
 
@@ -120,50 +120,15 @@ export const NavbarItems = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  .run-up {
-    &:nth-child(1) {
-      animation: runUp 1s;
-      animation-fill-mode: forwards;
-      animation-delay: 0.6s;
-    }
-
-    &:nth-child(2) {
-      animation: runUp 1s;
-      animation-fill-mode: forwards;
-      animation-delay: 0.9s;
-    }
-
-    &:nth-child(3) {
-      animation: runUp 1s;
-      animation-fill-mode: forwards;
-      animation-delay: 1.2s;
-    }
-
-    &:nth-child(4) {
-      animation: runUp 1s;
-      animation-fill-mode: forwards;
-      animation-delay: 1.5s;
-    }
-
-    @keyframes runUp {
-      from {
-        top: 30%;
-        opacity: 0;
-      }
-      to {
-        top: 0;
-        opacity: 1;
-      }
-    }
-  }
-
   a {
     position: relative;
     opacity: 0;
+    margin-top: 30px;
     text-decoration: none;
     font-size: 2.3rem;
     width: fit-content;
     transition: all 0.3s;
+    transition-duration: 1s;
     color: ${({ theme }) => theme.colors.white};
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
