@@ -125,7 +125,7 @@ function Edit({
               />
             </S.FormGroup>
             <Button onClick={handleSubmit} className="primary">
-              Save
+              Edit
             </Button>
           </S.AddNewWrapper>
         </Body>

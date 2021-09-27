@@ -120,7 +120,7 @@ const base = css`
   }
 
   .rdw-editor-main {
-    height: 500px;
+    height: 500px !important;
   }
 
   // circle decor background

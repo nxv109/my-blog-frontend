@@ -38,7 +38,7 @@ function Posts({ post }: { post: IPostItems }) {
   );
 }
 
-export const getStaticProps = async ({ params }: { params: Params }) => {
+export const getServerSideProps = async ({ params }: { params: Params }) => {
   try {
     const { data } = await postService.getPosts({ url: `/posts/${params.id}` });
 
@@ -46,7 +46,6 @@ export const getStaticProps = async ({ params }: { params: Params }) => {
       props: {
         post: data.data,
       },
-      revalidate: 10,
     };
   } catch (error) {
     return {
@@ -55,17 +54,22 @@ export const getStaticProps = async ({ params }: { params: Params }) => {
   }
 };
 
-export const getStaticPaths = async () => {
-  try {
-    const { data } = await postService.getPosts({ url: '/posts' });
-    const posts = data.data;
+// NOTE: Generate static page at build time
+// export const getStaticPaths = async () => {
+//   try {
+//     const { data } = await postService.getPosts({ url: '/posts' });
+//     const posts = data.data;
 
-    const paths = posts.map((post: IPostItems) => ({
-      params: { id: post._id },
-    }));
+//     const paths = posts.map((post: IPostItems) => ({
+//       params: { id: post._id },
+//     }));
 
-    return { paths, fallback: 'blocking' };
-  } catch {}
-};
+//     return { paths, fallback: true };
+//   } catch {
+//     return {
+//       notFound: true,
+//     };
+//   }
+// };
 
 export default Posts;
