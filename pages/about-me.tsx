@@ -42,13 +42,15 @@ function AboutMe() {
                     Hi! My name is Vinh, I am an enthusiastic and optimistic
                     front-end Developer, with nearly two years of experience and
                     have worked through many different projects for Japanese
-                    companies such as E-commerce, management system, product promotion, branding...I have a
-                    Bachelor of Practice in Software Engineering.
+                    companies such as E-commerce, management system, product
+                    promotion, branding...I have a Bachelor of Practice in
+                    Software Engineering.
                   </p>
                   <p>
-                    I have a certain understanding of HTML, CSS, Javascript,
-                    ReactJS, Bootstrap, Typescript, Styled-components, NodeJS,
-                    MongoDB, NextJS, VueJS, and Git.
+                    I have knowledge of HTML, CSS, Javascript, ReactJS, NextJS,
+                    Bootstrap, Typescript, Styled-components and Git,...
+                    Additionally, have a certain understanding of NodeJS,
+                    MongoDB, VueJS.
                   </p>
                   <p>
                     My mission is to create products that satisfy customers.

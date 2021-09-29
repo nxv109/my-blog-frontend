@@ -18,7 +18,7 @@ export const Header = styled.header`
   margin-bottom: 25px;
 `;
 export const Name = styled.h1``;
-export const Address = styled.div``;
+export const Info = styled.div``;
 export const Label = styled.div``;
 export const Text = styled.div``;
 export const Experience = styled.div`

@@ -1,3 +1,4 @@
+import React from 'react';
 import * as S from './styles';
 
 type Props = {
@@ -5,47 +6,65 @@ type Props = {
   value?: string;
   disabled?: boolean;
   readOnly?: boolean;
-  placeholder: string;
+  placeholder?: string;
   name: string;
   size?: string;
+  style?: Record<string, any>;
+  isControlled?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyDown?: (e: React.ChangeEvent<any>) => void;
 };
 
-function Input({
-  type = 'text',
-  value = '',
-  disabled = false,
-  readOnly = false,
-  placeholder = '',
-  size = 'normal',
-  name,
-  onChange,
-}: Props) {
-  if (value)
+const Input = React.forwardRef(
+  (
+    {
+      type = 'text',
+      value = '',
+      disabled = false,
+      readOnly = false,
+      isControlled = false,
+      placeholder = '',
+      size = 'normal',
+      name,
+      style,
+      onChange,
+      onKeyDown,
+    }: Props,
+    ref: any,
+  ) => {
+    if (isControlled) {
+      return (
+        <S.Input
+          type={type}
+          name={name}
+          value={value}
+          disabled={disabled}
+          readOnly={readOnly}
+          placeholder={placeholder}
+          $size={size}
+          ref={ref}
+          style={style}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
+        />
+      );
+    }
+
     return (
       <S.Input
         type={type}
-        value={value}
         name={name}
         disabled={disabled}
         readOnly={readOnly}
         placeholder={placeholder}
         $size={size}
+        ref={ref}
+        style={style}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
     );
-
-  return (
-    <S.Input
-      type={type}
-      name={name}
-      disabled={disabled}
-      readOnly={readOnly}
-      placeholder={placeholder}
-      $size={size}
-      onChange={onChange}
-    />
-  );
-}
+  },
+);
 
 export default Input;

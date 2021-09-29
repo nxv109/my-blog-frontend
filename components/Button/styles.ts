@@ -14,8 +14,9 @@ export const Button = styled.button`
   }
 
   &:disabled {
-    background: ${({ theme }) => theme.colors.gray};
-    color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.gray4};
+    color: ${({ theme }) => theme.colors.gray1};
+    cursor: not-allowed;
   }
 
   ${({ $size }: { $size?: string }) => {

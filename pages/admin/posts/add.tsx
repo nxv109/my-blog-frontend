@@ -1,10 +1,11 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 import postService from '@/services/postService';
 import uploadService from '@/services/uploadService';
 import categoryService from '@/services/categoryService';
+import tagService from '@/services/tagService';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -16,16 +17,24 @@ import Select from '@/components/Select';
 import AuthLayout from '@/components/Layout/AuthLayout';
 
 import webStorage from '@/utils/webStorage';
+import { tagNotExistInDB } from '@/utils/pages/admin/posts';
 
 import { APP_KEYS, ROUTES } from '@/constants';
 
 import { ICategoryItems } from '@/typings/categories';
+import { ITags } from '@/typings/tags';
 
 const MyEditor = dynamic(() => import('@/components/Editor'), { ssr: false });
 
 import * as S from '@/styles/pages/admin';
 
-function AddPost({ categories }: { categories: ICategoryItems[] }) {
+function AddPost({
+  categories,
+  tagList,
+}: {
+  categories: ICategoryItems[];
+  tagList: ITags[];
+}) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: '',
@@ -33,6 +42,10 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
     content: '',
     article_thumbnail: '',
   });
+  const [tags, setTags] = useState<string[]>([]);
+  const [paddingLeft, setPaddingLeft] = useState(0);
+  const [inputTag, setInputTag] = useState('');
+  const tagRef = useRef<HTMLDivElement>(null);
 
   const handleUploadThumbnail = async (file: Blob | string) => {
     const response = await uploadService.uploadImage(file);
@@ -60,18 +73,60 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
 
   const handleSubmit = async () => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
+    const newFormData = { ...formData, tags: JSON.stringify(tags) };
 
     try {
-      await postService.addPosts({
-        url: '/posts',
-        data: formData,
-        headers: {
-          Authorization: token,
-        },
-      });
+      // Kiểm tra trong DB thằng nào chưa có thì mới add
+      const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
+
+      await Promise.all([
+        postService.addPosts({
+          url: '/posts',
+          data: newFormData,
+          headers: {
+            Authorization: token,
+          },
+        }),
+        ...tagsNotExistInDB.map(tag => {
+          return tagService.addTag({
+            url: '/tags',
+            data: { name: tag },
+            headers: {
+              Authorization: token,
+            },
+          });
+        }),
+      ]);
     } finally {
       router.push(ROUTES.ADMIN_POST_LIST);
     }
+  };
+
+  // Handle Tag feature
+  useEffect(() => {
+    if (tagRef.current) {
+      setPaddingLeft(tagRef.current.offsetWidth);
+    }
+  }, [tagRef.current, tags]);
+
+  const handlePressEnter = async (e: any) => {
+    if (
+      e.key === 'Enter' &&
+      e.target.value &&
+      !tags.includes(e.target.value.toLowerCase())
+    ) {
+      setTags([...tags, e.target.value.toLowerCase()]);
+      setInputTag('');
+    }
+  };
+
+  const handleTags = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputTag(e.target.value);
+    // TODO: Search tags
+  };
+
+  const handleDeleteTag = (tagID: number) => {
+    setTags(tags.filter((_, index) => index !== tagID));
   };
 
   return (
@@ -111,9 +166,33 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
               <Select
                 values={categories}
                 name="category"
-                defaultValue=''
+                defaultValue=""
                 onChange={handleChange}
               />
+            </S.FormGroup>
+            <S.FormGroup>
+              <S.TagWrapper>
+                <Input
+                  type="text"
+                  name="tags"
+                  value={inputTag}
+                  style={{ paddingLeft: `${paddingLeft + 5}px` }}
+                  placeholder="Add new tags..."
+                  isControlled
+                  onChange={handleTags}
+                  onKeyDown={handlePressEnter}
+                />
+                <S.Tags ref={tagRef}>
+                  {tags.map((tag: string, index) => (
+                    <S.Tag key={index}>
+                      <span>{tag}</span>
+                      <S.DeleteTagBtn onClick={() => handleDeleteTag(index)}>
+                        x
+                      </S.DeleteTagBtn>
+                    </S.Tag>
+                  ))}
+                </S.Tags>
+              </S.TagWrapper>
             </S.FormGroup>
             <Button onClick={handleSubmit} className="primary">
               Save
@@ -127,13 +206,19 @@ function AddPost({ categories }: { categories: ICategoryItems[] }) {
 
 export const getServerSideProps = async () => {
   try {
-    const { data } = await categoryService.getCategories({
-      url: '/categories',
-    });
+    const [categories, tags] = await Promise.all([
+      categoryService.getCategories({
+        url: '/categories',
+      }),
+      tagService.getTags({
+        url: '/tags',
+      }),
+    ]);
 
     return {
       props: {
-        categories: data.data,
+        categories: categories.data.data,
+        tagList: tags.data.data,
       },
     };
   } catch (error) {

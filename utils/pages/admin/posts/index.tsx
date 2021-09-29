@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { IPostItems } from '@/typings/posts';
+import { ITags } from '@/typings/tags';
 
 import * as S from '@/styles/pages/admin';
 
@@ -60,4 +61,18 @@ const headerList = [
   },
 ];
 
-export { renderPosts, headerList };
+function tagObjectToArray(tags: ITags[]) {
+  return tags.map(tag => tag.name);
+}
+
+function tagNotExistInDB(tags: ITags[], values: string[]) {
+  const tagList = tagObjectToArray(tags);
+
+  if (Array.isArray(values)) {
+    return values.filter((v: string) => !tagList.includes(v));
+  }
+
+  return [];
+}
+
+export { renderPosts, headerList, tagNotExistInDB };

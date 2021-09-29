@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { rgba } from 'polished';
 
 export const Wrapper = styled.section`
   padding: 3rem;
@@ -67,4 +68,52 @@ export const ActionBtn = styled.div`
 
     return $type && types[$type];
   }}
+`;
+
+export const TagWrapper = styled.div`
+  position: relative;
+`;
+
+export const Tags = styled.div`
+  position: absolute;
+  left: 0;
+  top: 48%;
+  transform: translateY(-50%);
+`;
+
+export const Message = styled.div`
+  color: ${({ theme }) => theme.colors.red};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  margin-top: 1rem;
+`;
+
+export const DeleteTagBtn = styled.div`
+  position: absolute;
+  top: -13px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 25px;
+  color: ${({ theme }) => rgba(theme.colors.red, 0.8)};
+  text-align: center;
+  display: none;
+  cursor: pointer;
+  line-height: 19px;
+`;
+
+export const Tag = styled.span`
+  position: relative;
+  background: ${({ theme }) => theme.colors.gray4};
+  color: ${({ theme }) => theme.colors.black};
+  font-size: ${({ theme }) => theme.fontSizes.md};
+  border-radius: 5px;
+  padding: 3px 10px;
+
+  &:hover ${DeleteTagBtn} {
+    display: block;
+  }
+
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
 `;
