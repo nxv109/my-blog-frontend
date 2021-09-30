@@ -27,10 +27,15 @@ const updatePost = async ({ url, headers, data }: UseQueryParams) => {
   return appAxios.request.put(url, data, { headers });
 };
 
+const getPostsWithTag = async ({ url, params }: UseQueryParams) => {
+  return appAxios.request.get(url, params);
+};
+
 export default {
   getPosts,
   addPosts,
   deletePosts,
   getPostById,
   updatePost,
+  getPostsWithTag,
 };

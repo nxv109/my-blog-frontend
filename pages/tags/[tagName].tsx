@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Header from '@/components/Header';
 import Head from '@/components/Head';
@@ -11,13 +12,15 @@ import { IPostItems } from '@/typings/posts';
 
 import * as S from '@/styles/pages/blogs';
 
-function Blogs({ posts }: { posts: IPostItems[] }) {
+function PostsWithTag({ posts }: { posts: IPostItems[] }) {
+  const { query } = useRouter();
+
   if (!posts) return <Loader />;
 
   return (
     <S.Wrapper>
-      <Head title="Blogs" />
-      <Header title="Blogs" />
+      <Head title={`Posts with ${query.tagName} tag`} />
+      <Header title={`${query.tagName} tag`} showBackButton />
       <Body>
         <S.PostWrapper>
           {posts.map((post: IPostItems) => (
@@ -36,15 +39,20 @@ function Blogs({ posts }: { posts: IPostItems[] }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async ({
+  params,
+}: {
+  params: Record<string, any>;
+}) => {
   try {
-    const { data } = await postService.getPosts({ url: '/posts' });
+    const { data } = await postService.getPostsWithTag({
+      url: `/tags/${params.tagName}`,
+    });
 
     return {
       props: {
         posts: data.data,
-      }, 
-      revalidate: 10,
+      },
     };
   } catch (error) {
     return {
@@ -53,4 +61,4 @@ export const getStaticProps = async () => {
   }
 };
 
-export default Blogs;
+export default PostsWithTag;

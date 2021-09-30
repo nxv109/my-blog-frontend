@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  display: inline-block;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const Left = styled.div`
@@ -25,6 +24,11 @@ export const Title = styled.h1`
   word-break: break-all;
   text-transform: uppercase;
   margin-right: 2rem;
+
+  width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const InputSearch = styled.input`

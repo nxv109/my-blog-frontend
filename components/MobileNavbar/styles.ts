@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Btn = styled.div`
   position: absolute;
   right: 2rem;
-  top: 2rem;
+  top: 1.9rem;
   width: 25px;
   height: 20px;
   display: flex;

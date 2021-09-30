@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -26,6 +27,18 @@ function Posts({ post }: { post: IPostItems }) {
       <Body>
         <S.PostWrapper>
           <S.PostTitle>{post.title}</S.PostTitle>
+          {post.tags && !!post.tags.length && (
+            <S.Tags>
+              <S.TagTitle>Tags:</S.TagTitle>
+              <S.TagList>
+                {post.tags.map((tag: string, index) => (
+                  <Link key={index} href={`/tags/${tag}`} passHref>
+                    <S.Tag>{tag}</S.Tag>
+                  </Link>
+                ))}
+              </S.TagList>
+            </S.Tags>
+          )}
           {post.article_thumbnail && (
             <S.PostAvatar>
               <img src={post.article_thumbnail} alt={post.title} />

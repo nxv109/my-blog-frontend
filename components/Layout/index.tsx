@@ -5,17 +5,22 @@ import MobileNavbar from '@/components/MobileNavbar';
 import Loader from '@/components/Loader';
 
 import useUser from '@/hooks/useUser';
+import useWindowDimensions from '@/hooks/useWindowDimensions';
 
 function DefaultLayout({ children }: { children: ReactNode }) {
   const user = useUser();
+  const { width } = useWindowDimensions();
 
   if (!user || !user.data) return <Loader />;
 
   return (
     <main>
       <div className="xv-profile">
-        <MobileNavbar user={user.data} />
-        <Navbar user={user.data} />
+        {width && width < 1025 ? (
+          <MobileNavbar user={user.data} />
+        ) : (
+          <Navbar user={user.data} />
+        )}
         {children}
       </div>
     </main>

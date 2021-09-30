@@ -64,10 +64,41 @@ export const Summary = styled.div`
 
 // post
 export const PostTitle = styled.h1`
-  margin: 1rem 0 3rem;
+  margin: 1rem 0 2rem;
   text-transform: capitalize;
   text-align: center;
   font-size: 2.5rem;
+`;
+
+export const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+export const TagList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
+
+export const Tag = styled.span`
+  border: 1px solid ${({ theme }) => theme.colors.yellow};
+  border-radius: 5px;
+  padding: 0.2rem 1rem;
+  font-size: ${({ theme }) => theme.fontSizes.sm};
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.yellow2};
+    background: ${({ theme }) => theme.colors.yellow3};
+  }
+`;
+
+export const TagTitle = styled.div`
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  text-transform: uppercase;
 `;
 
 export const PostAvatar = styled.div`
