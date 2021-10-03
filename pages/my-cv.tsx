@@ -23,7 +23,8 @@ function Cv() {
   return (
     <S.Wrapper>
       <Head title="My CV" />
-      <S.BackHome>
+      <h3 style={{ textAlign: 'center' }}>Coming soon!</h3>
+      {/* <S.BackHome>
         <Link href="/">Home</Link>
       </S.BackHome>
       <S.Header>
@@ -99,7 +100,7 @@ function Cv() {
             <S.CompletionTime>Good</S.CompletionTime>
           </S.Right>
         </S.OrganizationWrapper>
-      </S.Section>
+      </S.Section> */}
     </S.Wrapper>
   );
 }

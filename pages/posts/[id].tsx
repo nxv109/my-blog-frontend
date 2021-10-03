@@ -7,7 +7,7 @@ import postService from '@/services/postService';
 import { IPostItems } from '@/typings/posts';
 import Head from '@/components/Head';
 
-import * as S from '@/styles/pages/blogs';
+import * as S from '@/styles/pages/posts';
 
 type Params = {
   [key: string]: any;

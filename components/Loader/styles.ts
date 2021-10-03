@@ -4,6 +4,15 @@ const pl2 = keyframes`
   100% {box-shadow: 0 0 0 40px #0000}
 `;
 
+const spinner = keyframes`
+   0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 export const Loader = styled.span`
   display: block;
   width: 20px;
@@ -32,4 +41,14 @@ export const Loader = styled.span`
   &:after {
     animation-delay: -1s;
   }
+`;
+
+export const Spinner = styled.div`
+  display: inline-block;
+  border: 4px solid ${({ theme }) => theme.colors.gray3};
+  border-left-color: ${({ theme }) => theme.colors.blue};
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: ${spinner} 1.2s linear infinite;
 `;

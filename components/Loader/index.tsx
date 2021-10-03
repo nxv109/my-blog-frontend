@@ -1,6 +1,9 @@
 import * as S from './styles';
 
-function Loader() {
+function Loader({ isLoading }: { isLoading?: boolean }) {
+  if (isLoading) {
+    return <S.Spinner />
+  }
   return <S.Loader />;
 }
 

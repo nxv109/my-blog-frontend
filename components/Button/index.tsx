@@ -10,7 +10,7 @@ type Props = {
   isLink?: boolean;
   size?: string;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick?: (e?: React.ChangeEvent<any>) => void;
 };
 
 function Button({

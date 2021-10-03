@@ -1,7 +1,7 @@
 export const NAVBAR_ITEMS_CLIENT = [
   {
-    name: 'Blogs',
-    pathname: '/blogs',
+    name: 'Posts',
+    pathname: '/posts',
   },
   {
     name: 'Tags',

@@ -8,7 +8,11 @@ type UseQueryParams = {
 };
 
 const getPosts = async ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
+};
+
+const getPostsAll = async ({ url, params }: UseQueryParams) => {
+  return appAxios.request.get(url, { params });
 };
 
 const addPosts = async ({ url, data, headers }: UseQueryParams) => {
@@ -20,7 +24,7 @@ const deletePosts = async ({ url, headers }: UseQueryParams) => {
 };
 
 const getPostById = async ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 const updatePost = async ({ url, headers, data }: UseQueryParams) => {
@@ -28,12 +32,13 @@ const updatePost = async ({ url, headers, data }: UseQueryParams) => {
 };
 
 const getPostsWithTag = async ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 export default {
   getPosts,
   addPosts,
+  getPostsAll,
   deletePosts,
   getPostById,
   updatePost,

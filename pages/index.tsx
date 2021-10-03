@@ -1,13 +1,13 @@
-import Blogs from './blogs';
+import Posts from './posts';
 
 export default function Index(props: any) {
-  return <Blogs {...props} />;
+  return <Posts {...props} />;
 }
 
 export const getServerSideProps = async () => {
   return {
     redirect: {
-      destination: '/blogs',
+      destination: '/posts',
       permanent: false,
     },
   };

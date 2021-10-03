@@ -7,11 +7,11 @@ type UseQueryParams = {
 };
 
 const getUsers = ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 const getUser = ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 const getMyCV= ({ url }: UseQueryParams) => {
@@ -19,7 +19,7 @@ const getMyCV= ({ url }: UseQueryParams) => {
 };
 
 const addUser = ({ url, params }: UseQueryParams) => {
-  return appAxios.request.post(url, params);
+  return appAxios.request.post(url, { params });
 };
 
 const login = ({ url, data }: UseQueryParams) => {

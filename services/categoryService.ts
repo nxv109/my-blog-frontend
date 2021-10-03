@@ -6,7 +6,7 @@ type UseQueryParams = {
 };
 
 const getCategories = async ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 export default {

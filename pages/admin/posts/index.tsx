@@ -26,7 +26,7 @@ function Posts() {
   const router = useRouter();
 
   const { data, isLoading } = useQuery<{ data: IPostItems[] }>({
-    url: '/posts',
+    url: '/posts/all',
   });
 
   useEffect(() => {

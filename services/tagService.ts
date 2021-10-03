@@ -8,7 +8,7 @@ type UseQueryParams = {
 };
 
 const getTags = async ({ url, params }: UseQueryParams) => {
-  return appAxios.request.get(url, params);
+  return appAxios.request.get(url, { params });
 };
 
 const addTag = async ({ url, data, headers }: UseQueryParams) => {

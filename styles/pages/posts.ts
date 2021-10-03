@@ -10,6 +10,12 @@ export const PostWrapper = styled.div`
   width: 100%;
 `;
 
+export const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+`;
+
 export const PostItem = styled.a`
   display: flex;
   align-items: flex-start;

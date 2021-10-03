@@ -10,7 +10,7 @@ import postService from '@/services/postService';
 
 import { IPostItems } from '@/typings/posts';
 
-import * as S from '@/styles/pages/blogs';
+import * as S from '@/styles/pages/posts';
 
 function PostsWithTag({ posts }: { posts: IPostItems[] }) {
   const { query } = useRouter();
@@ -24,7 +24,7 @@ function PostsWithTag({ posts }: { posts: IPostItems[] }) {
       <Body>
         <S.PostWrapper>
           {posts.map((post: IPostItems) => (
-            <Link href={`/blogs/${post._id}`} key={post._id} passHref>
+            <Link href={`/posts/${post._id}`} key={post._id} passHref>
               <S.PostItem>
                 <S.Info>
                   <S.Title>{post.title}</S.Title>
