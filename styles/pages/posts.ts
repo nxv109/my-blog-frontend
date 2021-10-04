@@ -123,11 +123,11 @@ export const PostContent = styled.p`
 
   p {
     font-size: ${({ theme }) => theme.fontSizes.md} !important;
-    line-height: 1.6rem;
+    line-height: 3rem;
   }
 
   & > * {
-    margin: 2.5rem 0;
+    margin: 1.6rem 0;
   }
 
   blockquote {
@@ -138,12 +138,23 @@ export const PostContent = styled.p`
   }
 
   pre {
-    background: ${({ theme }) => theme.colors.gray3};
-    color: ${({ theme }) => theme.colors.black};
+    background: ${({ theme }) => theme.colors.blue};
+    color: ${({ theme }) => theme.colors.white};
+    font-size: ${({ theme }) => theme.fontSizes.sm} !important;
     padding: 1rem;
     margin: 0;
     max-height: 500px;
+    border-radius: 5px;
     overflow-x: auto;
+
+    span {
+      color: ${({ theme }) => theme.colors.white} !important;
+      font-size: ${({ theme }) => theme.fontSizes.sm} !important;
+    }
+  }
+
+  code {
+    background: ${({ theme }) => theme.colors.blue};
   }
 
   img {

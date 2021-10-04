@@ -137,6 +137,7 @@ function Edit({
           <S.AddNewWrapper>
             <S.FormGroup>
               <Input
+                isControlled
                 type="text"
                 name="title"
                 value={formData.title}

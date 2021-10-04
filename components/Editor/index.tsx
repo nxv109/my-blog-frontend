@@ -1,12 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
+// @ts-nocheck
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+
+import PrismDecorator from 'draft-js-prism';
+import Prism from 'prismjs';
 
 import uploadService from '@/services/uploadService';
 
+import { getBlocksFromHtml } from './utils';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import "prismjs/themes/prism-tomorrow.css";
 
 export default function MyEditor({
   value = '',
@@ -17,14 +23,17 @@ export default function MyEditor({
 }) {
   const [editorState, setEditorState] = useState<any>('');
   const editorRef = useRef(null);
+  const decorator = new PrismDecorator({
+    prism: Prism,
+  });
 
   useEffect(() => {
-    const blocksFromHtml = htmlToDraft(value);
-    const { contentBlocks, entityMap } = blocksFromHtml;
+    const { contentBlocks, entityMap } = getBlocksFromHtml(value);
 
     setEditorState(() =>
       EditorState.createWithContent(
         ContentState.createFromBlockArray(contentBlocks, entityMap),
+        decorator,
       ),
     );
   }, []);
@@ -41,10 +50,20 @@ export default function MyEditor({
     }, 3000);
   }
 
-  const handleEditorStateChange = (v: any) => {
+  const handleEditorStateChange = useCallback((v: any) => {
+    const { contentBlocks, entityMap } = getBlocksFromHtml(
+      draftToHtml(convertToRaw(v.getCurrentContent())),
+    );
+
+    setEditorState(() =>
+      EditorState.createWithContent(
+        ContentState.createFromBlockArray(contentBlocks, entityMap),
+        decorator,
+      ),
+    );
     setEditorState(v);
     debounce(v);
-  };
+  }, []);
 
   return (
     <Editor
