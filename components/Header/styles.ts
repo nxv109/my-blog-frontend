@@ -15,7 +15,7 @@ export const BackButton = styled.span`
   color: ${({ theme }) => theme.colors.yellow};
 `;
 
-export const Title = styled.h1`
+export const Title = styled.div`
   font-size: 2.3rem;
   font-weight: normal;
   color: ${({ theme }) => theme.colors.yellow};

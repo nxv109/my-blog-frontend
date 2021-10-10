@@ -3,13 +3,15 @@ import Head from 'next/head';
 
 interface IProps {
   title: string;
+  description?: string;
   children?: React.ReactNode;
 }
 
-function HeadContainer({ title, children }: IProps) {
+function HeadContainer({ title, description, children }: IProps) {
   return (
     <Head>
-      <title>{title ? `${title} - Xuan Vinh Blog` : 'Loading...'}</title>
+      <title>{title ? `${title} - Vinh Nguyen | nxv109` : 'Loading...'}</title>
+      <meta name="description" content={description} />
       {children}
     </Head>
   );

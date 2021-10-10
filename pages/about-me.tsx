@@ -16,7 +16,7 @@ function AboutMe() {
 
   return (
     <S.Wrapper>
-      <Head title="Nguyễn Xuân Vĩnh" />
+      <Head title="About me" description="Author: Vinh Nguyen(nxv109), Job: Front-end Developer, Address: Quang Nam - Da Nang, Github: https://github.com/nxv109" />
       <Header title="About me" showBackButton />
       <Body noPadding>
         <S.InnerWrapper>
@@ -26,7 +26,7 @@ function AboutMe() {
                 <Image
                   src="https://i.ibb.co/Mhwkp8z/profile-small-size.jpg"
                   layout="fill"
-                  alt="avatar"
+                  alt="About me: Vinh Nguyen(nxv109) - Avatar"
                 />
               </S.Avatar>
             </S.InfoLeft>

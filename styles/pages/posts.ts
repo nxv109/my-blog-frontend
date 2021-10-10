@@ -143,7 +143,6 @@ export const PostContent = styled.p`
     font-size: ${({ theme }) => theme.fontSizes.sm} !important;
     padding: 1rem;
     margin: 0;
-    max-height: 500px;
     border-radius: 5px;
     overflow-x: auto;
 
