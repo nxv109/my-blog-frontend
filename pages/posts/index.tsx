@@ -81,7 +81,7 @@ function Posts({ postsList }: { postsList: IPostItems[] }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const { data } = await postService.getPosts({ url: '/posts' });
 
@@ -90,7 +90,6 @@ export const getStaticProps = async () => {
         postsList: data.data,
         limit: data.meta.limit,
       },
-      revalidate: 10,
     };
   } catch (error) {
     return {
