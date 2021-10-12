@@ -39,6 +39,7 @@ function Edit({
   tagList: ITags[];
 }) {
   const router = useRouter();
+  const [content, setContent] = useState('');
   const [formData, setFormData] = useState({
     ...post,
     category: post?.category?._id,
@@ -67,16 +68,15 @@ function Edit({
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleChangeEditorContent = (value: string, name: string) => {
-    setFormData({ ...formData, [name]: value });
+  const handleChangeEditorContent = (value: string) => {
+    setContent(value);
   };
 
   const handleSubmit = async () => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
-    const newFormData = { ...formData, tags: JSON.stringify(tags) };
+    const newFormData = { ...formData, tags: JSON.stringify(tags), content };
 
     try {
-      // Kiểm tra trong DB thằng nào chưa có thì mới add
       const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
 
       await Promise.all([
@@ -162,10 +162,7 @@ function Edit({
               />
             </S.FormGroup>
             <S.FormGroup>
-              <MyEditor
-                value={formData.content}
-                onChange={handleChangeEditorContent}
-              />
+              <MyEditor value={formData.content} onChange={handleChangeEditorContent} />
             </S.FormGroup>
             <S.FormGroup>
               <Select

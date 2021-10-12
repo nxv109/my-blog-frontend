@@ -36,6 +36,7 @@ function AddPost({
   tagList: ITags[];
 }) {
   const router = useRouter();
+  const [content, setContent] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     summary: '',
@@ -67,16 +68,15 @@ function AddPost({
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleChangeEditorContent = (value: string, name: string) => {
-    setFormData({ ...formData, [name]: value });
+  const handleChangeEditorContent = (value: string) => {
+    setContent(value);
   };
 
   const handleSubmit = async () => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
-    const newFormData = { ...formData, tags: JSON.stringify(tags) };
+    const newFormData = { ...formData, tags: JSON.stringify(tags), content };
 
     try {
-      // Kiểm tra trong DB thằng nào chưa có thì mới add
       const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
 
       await Promise.all([
