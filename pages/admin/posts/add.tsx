@@ -23,6 +23,7 @@ import { APP_KEYS, ROUTES } from '@/constants';
 
 import { ICategoryItems } from '@/typings/categories';
 import { ITags } from '@/typings/tags';
+import { IPostItems } from '@/typings/posts';
 
 const MyEditor = dynamic(() => import('@/components/Editor'), { ssr: false });
 
@@ -37,12 +38,7 @@ function AddPost({
 }) {
   const router = useRouter();
   const [content, setContent] = useState('');
-  const [formData, setFormData] = useState({
-    title: '',
-    summary: '',
-    content: '',
-    article_thumbnail: '',
-  });
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [tags, setTags] = useState<string[]>([]);
   const [paddingLeft, setPaddingLeft] = useState(0);
   const [inputTag, setInputTag] = useState('');
@@ -138,7 +134,7 @@ function AddPost({
             <S.FormGroup>
               <Input
                 type="text"
-                value={formData.title}
+                value={formData?.title || ''}
                 name="title"
                 placeholder="Title..."
                 onChange={handleChange}
@@ -146,7 +142,7 @@ function AddPost({
             </S.FormGroup>
             <S.FormGroup>
               <Textarea
-                value={formData.summary}
+                value={formData?.summary || ''}
                 name="summary"
                 placeholder="Summary..."
                 onChange={handleChange}

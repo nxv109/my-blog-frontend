@@ -12,7 +12,7 @@ import uploadService from '@/services/uploadService';
 import { getBlocksFromHtml } from './utils';
 
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import "prismjs/themes/prism-tomorrow.css";
+import 'prismjs/themes/prism-tomorrow.css';
 
 export default function MyEditor({
   value = '',
@@ -43,24 +43,11 @@ export default function MyEditor({
     clearTimeout(timeID);
 
     timeID = setTimeout(() => {
-      onChange(
-        draftToHtml(convertToRaw(content.getCurrentContent())),
-        'content',
-      );
+      onChange(draftToHtml(convertToRaw(content.getCurrentContent())));
     }, 3000);
   }
 
   const handleEditorStateChange = useCallback((v: any) => {
-    const { contentBlocks, entityMap } = getBlocksFromHtml(
-      draftToHtml(convertToRaw(v.getCurrentContent())),
-    );
-
-    setEditorState(() =>
-      EditorState.createWithContent(
-        ContentState.createFromBlockArray(contentBlocks, entityMap),
-        decorator,
-      ),
-    );
     setEditorState(v);
     debounce(v);
   }, []);

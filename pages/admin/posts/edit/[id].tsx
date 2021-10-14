@@ -39,7 +39,6 @@ function Edit({
   tagList: ITags[];
 }) {
   const router = useRouter();
-  const [content, setContent] = useState('');
   const [formData, setFormData] = useState({
     ...post,
     category: post?.category?._id,
@@ -69,12 +68,15 @@ function Edit({
   };
 
   const handleChangeEditorContent = (value: string) => {
-    setContent(value);
+    setFormData({ ...formData, content: value });
   };
 
   const handleSubmit = async () => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
-    const newFormData = { ...formData, tags: JSON.stringify(tags), content };
+    const newFormData = {
+      ...formData,
+      tags: JSON.stringify(tags),
+    };
 
     try {
       const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
@@ -162,7 +164,10 @@ function Edit({
               />
             </S.FormGroup>
             <S.FormGroup>
-              <MyEditor value={formData.content} onChange={handleChangeEditorContent} />
+              <MyEditor
+                value={formData.content}
+                onChange={handleChangeEditorContent}
+              />
             </S.FormGroup>
             <S.FormGroup>
               <Select
