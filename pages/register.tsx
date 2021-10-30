@@ -1,27 +1,24 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import uploadService from '@/services/uploadService';
 import userService from '@/services/userService';
 
-import webStorage from '@/utils/webStorage';
-import { APP_KEYS } from '@/constants';
-
 import EmptyLayout from '@/components/Layout/EmptyLayout';
 import Input from '@/components/Input';
 import InputFile from '@/components/InputFile';
-import Loader from '@/components/Loader';
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
 import Head from '@/components/Head';
+import Loader from '@/components/Loader';
 
 import * as S from '@/styles/pages/register';
 
 function Register() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -29,16 +26,6 @@ function Register() {
     avatar: '',
     password: '',
   });
-
-  useEffect(() => {
-    const userId = webStorage.get(APP_KEYS.USER_ID);
-
-    if (userId) {
-      router.push('/');
-    } else {
-      setIsLogin(false);
-    }
-  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,17 +47,20 @@ function Register() {
 
   const handleSubmit = async () => {
     try {
-      const response = await userService.addUser({
+      await userService.addUser({
         url: '/register',
         params: formData,
       });
-      console.log(response);
+
+      await router.push('/login');
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (isLogin) return <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <S.Wrapper>

@@ -1,32 +1,43 @@
+// @ts-nocheck
 import { useRouter } from 'next/router';
 import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useForm, Controller } from 'react-hook-form';
 
 import postService from '@/services/postService';
-import uploadService from '@/services/uploadService';
 import categoryService from '@/services/categoryService';
 import tagService from '@/services/tagService';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Input from '@/components/Input';
-import InputFile from '@/components/InputFile';
-import Textarea from '@/components/Textarea';
 import Button from '@/components/Button';
-import Select from '@/components/Select';
 import AuthLayout from '@/components/Layout/AuthLayout';
 
 import webStorage from '@/utils/webStorage';
-import { tagNotExistInDB, debounce } from '@/utils/pages/admin/posts';
+import {
+  tagNotExistInDB,
+  // debounce,
+  handleUploadFile,
+} from '@/utils/pages/admin/posts';
 
 import { APP_KEYS, ROUTES } from '@/constants';
 
 import { ICategoryItems } from '@/typings/categories';
 import { ITags } from '@/typings/tags';
 
-const MyEditor = dynamic(() => import('@/components/Editor'), { ssr: false });
+const MyEditor = dynamic(() => import('@/components/Editor/newEditor'), {
+  ssr: false,
+});
 
 import * as S from '@/styles/pages/admin';
+
+type FormDataTProps = {
+  editor_content: string;
+  title: string;
+  article_thumbnail: any;
+  status: string;
+};
 
 function AddPost({
   categories,
@@ -36,44 +47,47 @@ function AddPost({
   tagList: ITags[];
 }) {
   const router = useRouter();
-  const [content, setContent] = useState('');
-  const [formData, setFormData] = useState<Record<string, any>>({});
   const [tags, setTags] = useState<string[]>([]);
   const [paddingLeft, setPaddingLeft] = useState(0);
   const [inputTag, setInputTag] = useState('');
   const tagRef = useRef<HTMLDivElement>(null);
 
-  const handleUploadThumbnail = async (file: Blob | string) => {
-    const response = await uploadService.uploadImage(file);
+  const { handleSubmit, control, register } = useForm({
+    mode: 'onChange',
+  });
 
-    setFormData({
-      ...formData,
-      article_thumbnail: response.data.display_url,
-    });
+  const getThumbnailFileName = file => {
+    if (Array.from(file).length !== 0) {
+      return handleUploadFile(file[0]);
+    } else {
+      return null;
+    }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+  const handleSubmitFormData = async (
+    data: FormDataTProps,
+    autoSave: boolean = true,
+    status: string = 'draft',
   ) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (status = 'draft', autoSave = true) => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
-    const newFormData = {
-      ...formData,
-      tags: JSON.stringify(tags),
-      content,
-      status,
-    };
 
     try {
-      const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
+      const thumbnailFileName = await getThumbnailFileName(
+        data.article_thumbnail,
+      );
+
+      const newFormData = {
+        ...data,
+        tags: tagRef?.current?.values
+          ? JSON.stringify(tagRef.current.values)
+          : null,
+        article_thumbnail: thumbnailFileName || '',
+        content: data.editor_content,
+        status,
+      };
+
+      const tagsNotExistInDB = tagNotExistInDB(tagList, tagRef.current.values);
+
       await Promise.all([
         postService.addPosts({
           url: '/posts',
@@ -99,16 +113,14 @@ function AddPost({
     }
   };
 
-  const handleChangeEditorContent = (value: string) => {
-    setContent(value);
-  };
+  // TODO: Auto save after 5s
+  // const callSubmitAction = () => {
+  //   handleSubmit(handleSubmitFormData)();
+  // };
 
-  //fix cho nay
-  // useEffect(() => {
-  //   if (content) {
-  //     debounce({ callback: handleSubmit, time: 5000 });
-  //   }
-  // }, [content]);
+  // const handleChangeEditorContent = () => {
+  //   debounce({ callback: callSubmitAction, time: 5000 });
+  // };
 
   // Handle Tag feature
   useEffect(() => {
@@ -125,16 +137,19 @@ function AddPost({
     ) {
       setTags([...tags, e.target.value.toLowerCase()]);
       setInputTag('');
+      tagRef.current.values = [...tags, e.target.value.toLowerCase()];
     }
   };
 
   const handleTags = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputTag(e.target.value);
-    // TODO: Search tags
   };
 
   const handleDeleteTag = (tagID: number) => {
     setTags(tags.filter((_, index) => index !== tagID));
+    tagRef.current.values = tagRef.current.values.filter(
+      (_, index) => index !== tagID,
+    );
   };
 
   return (
@@ -144,38 +159,37 @@ function AddPost({
         <Body>
           <S.AddNewWrapper>
             <S.FormGroup>
-              <Input
-                type="text"
-                value={formData?.title || ''}
-                name="title"
-                placeholder="Title..."
-                onChange={handleChange}
-              />
+              <S.FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Title..."
+                  {...register('title')}
+                />
+              </S.FormGroup>
+              <S.FormGroup>
+                <Input
+                  type="text"
+                  placeholder="Summary..."
+                  {...register('summary')}
+                />
+              </S.FormGroup>
+              <Input type="file" {...register('article_thumbnail')} />
             </S.FormGroup>
             <S.FormGroup>
-              <Textarea
-                value={formData?.summary || ''}
-                name="summary"
-                placeholder="Summary..."
-                onChange={handleChange}
-              />
-            </S.FormGroup>
-            <S.FormGroup>
-              <InputFile
-                type="file"
-                name="article_thumbnail"
-                onChange={handleUploadThumbnail}
-              />
-            </S.FormGroup>
-            <S.FormGroup>
-              <MyEditor onChange={handleChangeEditorContent} />
-            </S.FormGroup>
-            <S.FormGroup>
-              <Select
-                values={categories}
-                name="category"
-                defaultValue=""
-                onChange={handleChange}
+              <Controller
+                name="editor_content"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <MyEditor
+                      value={field.value}
+                      onChange={(e: any) => {
+                        field.onChange(e);
+                        // handleChangeEditorContent();
+                      }}
+                    />
+                  );
+                }}
               />
             </S.FormGroup>
             <S.FormGroup>
@@ -202,10 +216,20 @@ function AddPost({
                 </S.Tags>
               </S.TagWrapper>
             </S.FormGroup>
-            <Button onClick={() => handleSubmit('public')} className="primary">
+            <Button
+              onClick={handleSubmit((data: any) =>
+                handleSubmitFormData(data, false, 'public'),
+              )}
+              className="primary"
+            >
               Save with public
             </Button>
-            <Button onClick={() => handleSubmit('draft')} className="primary">
+            <Button
+              onClick={handleSubmit((data: any) =>
+                handleSubmitFormData(data, false),
+              )}
+              className="primary"
+            >
               Save with draft
             </Button>
           </S.AddNewWrapper>

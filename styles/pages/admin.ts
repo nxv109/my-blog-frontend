@@ -15,6 +15,12 @@ export const TableWrapper = styled.div`
 
 export const AddNewWrapper = styled.div`
   width: 100%;
+
+  button {
+    &:first-of-type {
+      margin-right: 1rem;
+    }
+  }
 `;
 
 export const Post = styled.div`

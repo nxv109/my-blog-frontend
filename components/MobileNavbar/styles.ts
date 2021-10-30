@@ -144,7 +144,7 @@ export const NavbarItems = styled.div`
     }
 
     @media (max-width: 1024px) {
-      font-size: 3rem;
+      font-size: 2rem;
     }
   }
 `;

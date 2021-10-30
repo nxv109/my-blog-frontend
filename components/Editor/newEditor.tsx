@@ -4,9 +4,6 @@ import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 
-import PrismDecorator from 'draft-js-prism';
-import Prism from 'prismjs';
-
 import uploadService from '@/services/uploadService';
 
 import { getBlocksFromHtml } from './utils';
@@ -23,9 +20,6 @@ export default function MyEditor({
 }) {
   const [editorState, setEditorState] = useState<any>('');
   const editorRef = useRef(null);
-  const decorator = new PrismDecorator({
-    prism: Prism,
-  });
 
   useEffect(() => {
     const { contentBlocks, entityMap } = getBlocksFromHtml(value);
@@ -33,7 +27,6 @@ export default function MyEditor({
     setEditorState(() =>
       EditorState.createWithContent(
         ContentState.createFromBlockArray(contentBlocks, entityMap),
-        decorator,
       ),
     );
   }, []);
@@ -42,11 +35,11 @@ export default function MyEditor({
     onChange(draftToHtml(convertToRaw(content.getCurrentContent())));
   };
 
-  function debounce(fn: any, content: any) {
-    clearTimeout(fn.id);
+  function debounce(callback: any, content: any) {
+    clearTimeout(callback.id);
 
-    fn.id = setTimeout(() => {
-      fn(content);
+    callback.id = setTimeout(() => {
+      callback(content);
     }, 1000);
   }
 

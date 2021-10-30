@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 import userService from '@/services/userService';
@@ -9,29 +9,19 @@ import { APP_KEYS } from '@/constants';
 import EmptyLayout from '@/components/Layout/EmptyLayout';
 import Button from '@/components/Button';
 import Input from '@/components/Input';
-import Loader from '@/components/Loader';
 import Logo from '@/components/Logo';
 import Head from '@/components/Head';
+import Loader from '@/components/Loader';
 
 import * as S from '@/styles/pages/login';
 
 function Login() {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-
-  useEffect(() => {
-    const userId = webStorage.get(APP_KEYS.USER_ID);
-
-    if (userId) {
-      router.push('/');
-    } else {
-      setIsLogin(false);
-    }
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -39,24 +29,27 @@ function Login() {
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     try {
+      setLoading(true);
       const { data } = await userService.login({
         url: '/login',
         data: formData,
       });
 
-      // save localStorage
+      // NOTE: Save to localStorage
       webStorage.set(APP_KEYS.ACCESS_TOKEN, data.accessToken);
       webStorage.set(APP_KEYS.REFRESH_TOKEN, data.refreshToken);
-      webStorage.set(APP_KEYS.USER_ID, data.data._id);
 
-      router.push('/');
+      await router.push('/');
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (isLogin) return <Loader />;
+  if (loading) return <Loader />;
 
   return (
     <S.Wrapper>

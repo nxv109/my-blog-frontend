@@ -1,4 +1,6 @@
 import Link from 'next/link';
+
+import uploadService from '@/services/uploadService';
 import { IPostItems } from '@/typings/posts';
 import { ITags } from '@/typings/tags';
 
@@ -75,4 +77,28 @@ function tagNotExistInDB(tags: ITags[], values: string[]) {
   return [];
 }
 
-export { renderPosts, headerList, tagNotExistInDB };
+/**
+ * Do anything after time
+ * @param content : ;
+ */
+
+interface debounceIProps {
+  time: number;
+  callback: any;
+}
+
+function debounce({ callback, time = 1000 }: debounceIProps) {
+  clearTimeout(callback.id);
+
+  callback.id = setTimeout(() => {
+    callback();
+  }, time);
+}
+
+async function handleUploadFile(file: Blob | string) {
+  const response = await uploadService.uploadImage(file);
+
+  return response?.data?.display_url || '';
+}
+
+export { renderPosts, headerList, tagNotExistInDB, debounce, handleUploadFile };

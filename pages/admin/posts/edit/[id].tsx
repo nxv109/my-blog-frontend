@@ -25,7 +25,7 @@ import { ICategoryItems } from '@/typings/categories';
 import { ITags } from '@/typings/tags';
 import { IPostItems } from '@/typings/posts';
 
-const MyEditor = dynamic(() => import('@/components/Editor'), { ssr: false });
+const MyEditor = dynamic(() => import('@/components/Editor/newEditor'), { ssr: false });
 
 import * as S from '@/styles/pages/admin';
 
@@ -71,11 +71,12 @@ function Edit({
     setFormData({ ...formData, content: value });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (status: string) => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
     const newFormData = {
       ...formData,
       tags: JSON.stringify(tags),
+      status,
     };
 
     try {
@@ -201,8 +202,11 @@ function Edit({
                 </S.Tags>
               </S.TagWrapper>
             </S.FormGroup>
-            <Button onClick={handleSubmit} className="primary">
-              Edit
+            <Button onClick={() => handleSubmit('public')} className="primary">
+              Update with public
+            </Button>
+            <Button onClick={() => handleSubmit('draft')} className="primary">
+              Update with draft
             </Button>
           </S.AddNewWrapper>
         </Body>
