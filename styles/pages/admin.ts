@@ -123,3 +123,8 @@ export const Tag = styled.span`
     margin-right: 5px;
   }
 `;
+
+export const Thumbnail = styled.div`
+  font-size: ${({theme}) => theme.fontSizes.sm};
+  margin-top: 1rem;
+`

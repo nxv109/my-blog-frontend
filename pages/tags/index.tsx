@@ -30,7 +30,7 @@ function Tags({ tags }: { tags: ITags[] }) {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   try {
     const { data } = await tagService.getTags({
       url: '/tags',
@@ -40,7 +40,6 @@ export const getStaticProps = async () => {
       props: {
         tags: data.data,
       },
-      revalidate: 10,
     };
   } catch (error) {
     return {

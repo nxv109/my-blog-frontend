@@ -1,86 +1,85 @@
+// @ts-nocheck
 import { useRouter } from 'next/router';
 import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useForm, Controller } from 'react-hook-form';
 
 import postService from '@/services/postService';
-import uploadService from '@/services/uploadService';
-import categoryService from '@/services/categoryService';
 import tagService from '@/services/tagService';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Input from '@/components/Input';
-import InputFile from '@/components/InputFile';
-import Textarea from '@/components/Textarea';
 import Button from '@/components/Button';
-import Select from '@/components/Select';
 import AuthLayout from '@/components/Layout/AuthLayout';
 
 import webStorage from '@/utils/webStorage';
-import { tagNotExistInDB } from '@/utils/pages/admin/posts';
+import {
+  tagNotExistInDB,
+  // debounce,
+  handleUploadFile,
+} from '@/utils/pages/admin/posts';
 
 import { APP_KEYS, ROUTES } from '@/constants';
 
-import { ICategoryItems } from '@/typings/categories';
 import { ITags } from '@/typings/tags';
-import { IPostItems } from '@/typings/posts';
 
-const MyEditor = dynamic(() => import('@/components/Editor/newEditor'), { ssr: false });
+const MyEditor = dynamic(() => import('@/components/Editor'), {
+  ssr: false,
+});
 
 import * as S from '@/styles/pages/admin';
 
-function Edit({
-  categories,
-  post,
-  tagList,
-}: {
-  categories: ICategoryItems[];
-  post: IPostItems;
-  tagList: ITags[];
-}) {
+type FormDataTProps = {
+  editor_content: string;
+  title: string;
+  article_thumbnail: any;
+  status: string;
+};
+
+function EditPost({ post, tagList }: { post: IPostItems; tagList: ITags[] }) {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    ...post,
-    category: post?.category?._id,
-  });
-  const [tags, setTags] = useState<string[]>(post.tags || []);
+  const [tags, setTags] = useState<string[]>(post?.tags || []);
   const [paddingLeft, setPaddingLeft] = useState(0);
   const [inputTag, setInputTag] = useState('');
   const tagRef = useRef<HTMLDivElement>(null);
 
-  const handleUploadThumbnail = async (file: Blob | string) => {
-    const response = await uploadService.uploadImage(file);
+  const { handleSubmit, control, register } = useForm({
+    mode: 'onChange',
+    defaultValues: post,
+  });
 
-    setFormData({
-      ...formData,
-      article_thumbnail: response.data.display_url,
-    });
+  const getThumbnailFileName = file => {
+    if (Array.from(file).length !== 0) {
+      return handleUploadFile(file[0]);
+    } else {
+      return null;
+    }
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+  const handleSubmitFormData = async (
+    data: FormDataTProps,
+    autoSave: boolean = true,
+    status: string = 'draft',
   ) => {
-    const { name, value } = e.target;
-
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleChangeEditorContent = (value: string) => {
-    setFormData({ ...formData, content: value });
-  };
-
-  const handleSubmit = async (status: string) => {
     const token = webStorage.get(APP_KEYS.ACCESS_TOKEN);
-    const newFormData = {
-      ...formData,
-      tags: JSON.stringify(tags),
-      status,
-    };
 
     try {
-      const tagsNotExistInDB = tagNotExistInDB(tagList, tags);
+      const thumbnailFileName = await getThumbnailFileName(
+        data.article_thumbnail_field,
+      );
+
+      const newFormData = {
+        ...data,
+        tags: tagRef?.current?.values
+          ? JSON.stringify(tagRef.current.values)
+          : null,
+        article_thumbnail: thumbnailFileName || data.article_thumbnail || '',
+        content: data.content,
+        status,
+      };
+
+      const tagsNotExistInDB = tagNotExistInDB(tagList, tagRef.current.values);
 
       await Promise.all([
         postService.updatePost({
@@ -101,9 +100,20 @@ function Edit({
         }),
       ]);
     } finally {
-      router.push(ROUTES.ADMIN_POST_LIST);
+      if (!autoSave) {
+        router.push(ROUTES.ADMIN_POST_LIST);
+      }
     }
   };
+
+  // TODO: Auto save after 5s
+  // const callSubmitAction = () => {
+  //   handleSubmit(handleSubmitFormData)();
+  // };
+
+  // const handleChangeEditorContent = () => {
+  //   debounce({ callback: callSubmitAction, time: 5000 });
+  // };
 
   // Handle Tag feature
   useEffect(() => {
@@ -120,62 +130,60 @@ function Edit({
     ) {
       setTags([...tags, e.target.value.toLowerCase()]);
       setInputTag('');
+      tagRef.current.values = [...tags, e.target.value.toLowerCase()];
     }
   };
 
   const handleTags = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputTag(e.target.value);
-    // TODO: Search tags
   };
 
   const handleDeleteTag = (tagID: number) => {
     setTags(tags.filter((_, index) => index !== tagID));
+    tagRef.current.values = tagRef.current.values.filter(
+      (_, index) => index !== tagID,
+    );
   };
 
   return (
     <AuthLayout>
       <S.Wrapper>
-        <Header title="Edit the post" showBackButton />
+        <Header title="Edit new post" showBackButton />
         <Body>
           <S.AddNewWrapper>
             <S.FormGroup>
               <Input
-                isControlled
                 type="text"
-                name="title"
-                value={formData.title}
                 placeholder="Title..."
-                onChange={handleChange}
+                {...register('title')}
               />
             </S.FormGroup>
             <S.FormGroup>
-              <Textarea
-                value={formData.summary}
-                name="summary"
+              <Input
+                type="text"
                 placeholder="Summary..."
-                onChange={handleChange}
+                {...register('summary')}
               />
             </S.FormGroup>
             <S.FormGroup>
-              <InputFile
-                label={formData.article_thumbnail || 'Select a file'}
-                type="file"
-                name="article_thumbnail"
-                onChange={handleUploadThumbnail}
-              />
+              <Input type="file" {...register('article_thumbnail_field')} />
+              <S.Thumbnail>{post?.article_thumbnail || null}</S.Thumbnail>
             </S.FormGroup>
             <S.FormGroup>
-              <MyEditor
-                value={formData.content}
-                onChange={handleChangeEditorContent}
-              />
-            </S.FormGroup>
-            <S.FormGroup>
-              <Select
-                values={categories}
-                name="category"
-                defaultValue={formData?.category || ''}
-                onChange={handleChange}
+              <Controller
+                name="content"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <MyEditor
+                      value={field.value}
+                      onChange={(e: any) => {
+                        field.onChange(e);
+                        // handleChangeEditorContent();
+                      }}
+                    />
+                  );
+                }}
               />
             </S.FormGroup>
             <S.FormGroup>
@@ -202,11 +210,21 @@ function Edit({
                 </S.Tags>
               </S.TagWrapper>
             </S.FormGroup>
-            <Button onClick={() => handleSubmit('public')} className="primary">
-              Update with public
+            <Button
+              onClick={handleSubmit((data: any) =>
+                handleSubmitFormData(data, false, 'public'),
+              )}
+              className="primary"
+            >
+              Save with public
             </Button>
-            <Button onClick={() => handleSubmit('draft')} className="primary">
-              Update with draft
+            <Button
+              onClick={handleSubmit((data: any) =>
+                handleSubmitFormData(data, false),
+              )}
+              className="primary"
+            >
+              Save with draft
             </Button>
           </S.AddNewWrapper>
         </Body>
@@ -221,12 +239,9 @@ export const getServerSideProps = async ({
   params: Record<string, any>;
 }) => {
   try {
-    const [post, categories, tags] = await Promise.all([
+    const [post, tags] = await Promise.all([
       postService.getPostById({
         url: `/posts/${params.id}`,
-      }),
-      categoryService.getCategories({
-        url: '/categories',
       }),
       tagService.getTags({
         url: '/tags',
@@ -235,7 +250,6 @@ export const getServerSideProps = async ({
 
     return {
       props: {
-        categories: categories.data.data,
         post: post.data.data,
         tagList: tags.data.data,
       },
@@ -247,4 +261,4 @@ export const getServerSideProps = async ({
   }
 };
 
-export default Edit;
+export default EditPost;

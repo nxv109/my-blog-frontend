@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import AuthLayout from '@/components/Layout/AuthLayout';
 import Table from '@/components/Table';
 import Loader from '@/components/Loader';
+import Popup from '@/components/Popup';
 
 import postService from '@/services/postService';
 import { IPostItems } from '@/typings/posts';
@@ -23,6 +24,8 @@ import * as S from '@/styles/pages/admin';
 function Posts() {
   const [posts, setPosts] = useState<IPostItems[]>([]);
   const [loadingPage, setLoadingPage] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [postId, setPostId] = useState('');
   const router = useRouter();
 
   const { data, isLoading } = useQuery<{ data: IPostItems[] }>({
@@ -50,9 +53,25 @@ function Posts() {
       setPosts(postsData.data.data);
     } catch (error) {
       console.log(error);
+      setShowPopup(false);
     } finally {
       setLoadingPage(false);
+      setShowPopup(false);
     }
+  };
+
+  const handleShowPopupDeleteConfirm = (id: string) => {
+    setShowPopup(true);
+    setPostId(id);
+  };
+
+  const handleCancel = () => {
+    setShowPopup(false);
+  };
+
+  const handleAccept = () => {
+    handleDelete(postId);
+    setShowPopup(false);
   };
 
   if (isLoading || loadingPage || !posts) return <Loader />;
@@ -67,7 +86,9 @@ function Posts() {
               <Table
                 header={headerList}
                 body={posts}
-                renderBody={() => renderPosts({ handleDelete })}
+                renderBody={() =>
+                  renderPosts({ handleDelete: handleShowPopupDeleteConfirm })
+                }
               />
             </S.TableWrapper>
           </Body>
@@ -79,6 +100,15 @@ function Posts() {
           </Button>
         </S.Post>
       </S.Wrapper>
+      {showPopup && (
+        <Popup
+          type="serious"
+          title="Delete"
+          content="Do you want delete it?"
+          handleCancel={handleCancel}
+          handleAccept={handleAccept}
+        />
+      )}
     </AuthLayout>
   );
 }
