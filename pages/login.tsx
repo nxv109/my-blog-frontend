@@ -41,11 +41,9 @@ function Login() {
       webStorage.set(APP_KEYS.ACCESS_TOKEN, data.accessToken);
       webStorage.set(APP_KEYS.REFRESH_TOKEN, data.refreshToken);
 
-      await router.push('/');
+      router.push('/');
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 

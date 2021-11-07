@@ -47,16 +47,15 @@ function Register() {
 
   const handleSubmit = async () => {
     try {
+      setLoading(true);
       await userService.addUser({
         url: '/register',
         params: formData,
       });
 
-      await router.push('/login');
+      router.push('/login');
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
