@@ -12,6 +12,7 @@ import Body from '@/components/Body';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import AuthLayout from '@/components/Layout/AuthLayout';
+import Textarea from '@/components/Textarea';
 
 import webStorage from '@/utils/webStorage';
 import {
@@ -159,11 +160,7 @@ function AddPost({ tagList }: { tagList: ITags[] }) {
                 />
               </S.FormGroup>
               <S.FormGroup>
-                <Input
-                  type="text"
-                  placeholder="Summary..."
-                  {...register('summary')}
-                />
+                <Textarea placeholder="Summary..." {...register('summary')} />
               </S.FormGroup>
               <Input type="file" {...register('article_thumbnail')} />
             </S.FormGroup>

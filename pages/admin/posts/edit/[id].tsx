@@ -10,6 +10,7 @@ import tagService from '@/services/tagService';
 import Header from '@/components/Header';
 import Body from '@/components/Body';
 import Input from '@/components/Input';
+import Textarea from '@/components/Textarea';
 import Button from '@/components/Button';
 import AuthLayout from '@/components/Layout/AuthLayout';
 
@@ -122,6 +123,12 @@ function EditPost({ post, tagList }: { post: IPostItems; tagList: ITags[] }) {
     }
   }, [tagRef.current, tags]);
 
+  useEffect(() => {
+    if (tagRef.current) {
+      tagRef.current.values = post?.tags || [];
+    }
+  }, []);
+
   const handlePressEnter = async (e: any) => {
     if (
       e.key === 'Enter' &&
@@ -159,11 +166,7 @@ function EditPost({ post, tagList }: { post: IPostItems; tagList: ITags[] }) {
               />
             </S.FormGroup>
             <S.FormGroup>
-              <Input
-                type="text"
-                placeholder="Summary..."
-                {...register('summary')}
-              />
+              <Textarea placeholder="Summary..." {...register('summary')} />
             </S.FormGroup>
             <S.FormGroup>
               <Input type="file" {...register('article_thumbnail_field')} />

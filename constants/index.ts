@@ -25,6 +25,7 @@ const USER_ROLES = {
 const DEFAULT_IMAGES = {
   NEWS: 'https://i.ibb.co/CQbCYsz/news-default.png',
   AVATAR: 'https://i.ibb.co/rH3v5bX/avatar-default.png',
+  LOGO: 'https://i.ibb.co/hFHYRzp/logo-nxv-109.jpg',
 } as const;
 
 export { APP_KEYS, ROUTES, ERROR_CODES, USER_ROLES, DEFAULT_IMAGES };

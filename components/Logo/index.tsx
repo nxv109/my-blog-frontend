@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import LogoDefault from '@/assets/images/logo.png';
+import { DEFAULT_IMAGES } from '@/constants';
 
 import * as S from './styles';
 
@@ -9,12 +9,12 @@ function Logo({ isDisabledLink = false }: { isDisabledLink?: boolean }) {
     <>
       {isDisabledLink ? (
         <S.Logo>
-          <img src={LogoDefault} alt="logo" />
+          <img src={DEFAULT_IMAGES.LOGO} alt="logo" />
         </S.Logo>
       ) : (
         <Link href="/" passHref>
           <S.Logo>
-            <img src={LogoDefault} alt="logo" />
+            <img src={DEFAULT_IMAGES.LOGO} alt="logo" />
           </S.Logo>
         </Link>
       )}
