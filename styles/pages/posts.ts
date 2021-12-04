@@ -118,38 +118,24 @@ export const PostAvatar = styled.div`
 export const PostContent = styled.p`
   * {
     font-family: ${({ theme }) => theme.fontFamilies.en} !important;
-    line-height: 2.5rem;
-  }
-
-  p {
-    font-size: ${({ theme }) => theme.fontSizes.md} !important;
-    line-height: 3rem;
-  }
-
-  & > * {
-    margin: 1.6rem 0;
+    line-height: 2.7rem;
   }
 
   blockquote {
     background: ${({ theme }) => theme.colors.gray2};
     border-left: 5px solid ${({ theme }) => theme.colors.yellow};
     padding: 1rem;
-    margin: 0;
+    font-style: italic
   }
 
   pre {
-    background: ${({ theme }) => theme.colors.blue};
+    background: ${({ theme }) => theme.colors.gray5};
     color: ${({ theme }) => theme.colors.white};
-    font-size: ${({ theme }) => theme.fontSizes.sm} !important;
+    font-size: ${({ theme }) => theme.fontSizes.sm};
     padding: 1rem;
     margin: 0;
     border-radius: 5px;
     overflow-x: auto;
-
-    span {
-      color: ${({ theme }) => theme.colors.white} !important;
-      font-size: ${({ theme }) => theme.fontSizes.sm} !important;
-    }
   }
 
   code {

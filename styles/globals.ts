@@ -110,6 +110,12 @@ const base = css`
     }
   }
 
+  br {
+    content: '';
+    display: block;
+    margin-bottom: 1em;
+  }
+
   // editor
   .editor-height {
     min-height: 275px;

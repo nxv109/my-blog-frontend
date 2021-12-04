@@ -7,6 +7,7 @@ import postService from '@/services/postService';
 import { IPostItems } from '@/typings/posts';
 import Head from '@/components/Head';
 
+import 'highlight.js/styles/androidstudio.css';
 import * as S from '@/styles/pages/posts';
 
 type Params = {

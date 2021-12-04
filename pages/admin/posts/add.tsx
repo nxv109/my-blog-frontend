@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { useRouter } from 'next/router';
 import React, { useState, useRef, useEffect } from 'react';
-import dynamic from 'next/dynamic';
 import { useForm, Controller } from 'react-hook-form';
 
 import postService from '@/services/postService';
@@ -24,10 +23,7 @@ import {
 import { APP_KEYS, ROUTES } from '@/constants';
 
 import { ITags } from '@/typings/tags';
-
-const MyEditor = dynamic(() => import('@/components/Editor'), {
-  ssr: false,
-});
+import QuillEditor from '@/components/Editor/quillEditor';
 
 import * as S from '@/styles/pages/admin';
 
@@ -170,11 +166,10 @@ function AddPost({ tagList }: { tagList: ITags[] }) {
                 control={control}
                 render={({ field }) => {
                   return (
-                    <MyEditor
+                    <QuillEditor
                       value={field.value}
                       onChange={(e: any) => {
                         field.onChange(e);
-                        // handleChangeEditorContent();
                       }}
                     />
                   );

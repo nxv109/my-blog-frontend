@@ -11,6 +11,7 @@ const colors = {
   gray2: '#00000005',
   gray3: '#00000012',
   gray4: '#d4d4d4',
+  gray5: '#282b2e',
   red: '#ef233c',
 } as const;
 
