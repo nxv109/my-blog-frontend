@@ -10,6 +10,7 @@ export const Textarea = styled.textarea`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.md};
   line-height: 2.5rem;
+  resize: none;
 
   &::placeholder {
     letter-spacing: 2px;

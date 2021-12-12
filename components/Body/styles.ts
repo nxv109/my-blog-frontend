@@ -12,7 +12,7 @@ export const Body = styled.section`
   color: ${({ theme }) => theme.colors.blue};
   padding: 1rem;
   padding-bottom: 7rem;
-  height: calc(100% - 70px);
+  height: calc(100% - 60px);
 
   display: flex;
   flex-direction: row;

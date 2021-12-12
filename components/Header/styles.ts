@@ -13,13 +13,15 @@ export const Left = styled.div`
 export const BackButton = styled.span`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.yellow};
+  text-align: center;
+  width: 28px;
+  height: 28px;
 `;
 
 export const Title = styled.div`
   font-size: 2.3rem;
   font-weight: normal;
   color: ${({ theme }) => theme.colors.yellow};
-  text-decoration: underline;
   word-spacing: 3px;
   word-break: break-all;
   text-transform: uppercase;

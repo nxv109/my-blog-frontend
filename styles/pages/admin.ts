@@ -5,6 +5,18 @@ export const Wrapper = styled.section`
   padding: 3rem;
   width: 100%;
   height: 100%;
+
+  .ql-toolbar {
+    position: sticky;
+    top: -11px;
+    left: 0;
+    z-index: 1;
+    background: ${({ theme }) => theme.colors.white};
+  }
+
+  .ql-editor {
+    min-height: 500px;
+  }
 `;
 
 export const TableWrapper = styled.div`
@@ -125,6 +137,6 @@ export const Tag = styled.span`
 `;
 
 export const Thumbnail = styled.div`
-  font-size: ${({theme}) => theme.fontSizes.sm};
+  font-size: ${({ theme }) => theme.fontSizes.sm};
   margin-top: 1rem;
-`
+`;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  padding: 3rem;
+  padding: 2rem;
   width: 100%;
   height: 100%;
 `;
@@ -30,7 +30,7 @@ export const PostItem = styled.a`
 
   &:not(:last-child) {
     padding-bottom: 1rem;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray4};
   }
 `;
 
@@ -108,7 +108,7 @@ export const TagTitle = styled.div`
 `;
 
 export const PostAvatar = styled.div`
-  margin: 2rem 0;
+  margin-top: 2rem;
 
   img {
     width: 100%;
@@ -116,6 +116,8 @@ export const PostAvatar = styled.div`
 `;
 
 export const PostContent = styled.p`
+  margin-top: 2rem;
+
   * {
     font-family: ${({ theme }) => theme.fontFamilies.en} !important;
     line-height: 2.7rem;
@@ -125,7 +127,7 @@ export const PostContent = styled.p`
     background: ${({ theme }) => theme.colors.gray2};
     border-left: 5px solid ${({ theme }) => theme.colors.yellow};
     padding: 1rem;
-    font-style: italic
+    font-style: italic;
   }
 
   pre {
