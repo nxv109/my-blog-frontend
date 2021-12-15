@@ -209,6 +209,9 @@ function EditPost({ post, tagList }: { post: IPostItems; tagList: ITags[] }) {
                 </S.Tags>
               </S.TagWrapper>
             </S.FormGroup>
+            <S.FormGroup>
+              <Input type="text" placeholder="Slug..." {...register('slug')} />
+            </S.FormGroup>
             <Button
               onClick={handleSubmit((data: any) =>
                 handleSubmitFormData(data, false, 'public'),

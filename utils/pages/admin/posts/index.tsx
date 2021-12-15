@@ -101,4 +101,18 @@ async function handleUploadFile(file: Blob | string) {
   return response?.data?.display_url || '';
 }
 
-export { renderPosts, headerList, tagNotExistInDB, debounce, handleUploadFile };
+function getPostID(text: string) {
+  if (!text) return '';
+
+  const textSplit = text.split('-');
+  return textSplit[textSplit.length - 1];
+}
+
+export {
+  renderPosts,
+  headerList,
+  tagNotExistInDB,
+  debounce,
+  handleUploadFile,
+  getPostID,
+};

@@ -6,6 +6,7 @@ module.exports = {
   future: {
     webpack5: true,
   },
+  generateBuildId: () => 'build',
   webpack: config => {
     config.module.rules.push({
       test: /\.svg$/,

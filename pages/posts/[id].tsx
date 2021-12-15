@@ -3,9 +3,10 @@ import Link from 'next/link';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
+import Head from '@/components/Head';
 import postService from '@/services/postService';
 import { IPostItems } from '@/typings/posts';
-import Head from '@/components/Head';
+import { getPostID } from '@/utils/pages/admin/posts';
 
 import 'highlight.js/styles/androidstudio.css';
 import * as S from '@/styles/pages/posts';
@@ -54,7 +55,8 @@ function Posts({ post }: { post: IPostItems }) {
 
 export const getServerSideProps = async ({ params }: { params: Params }) => {
   try {
-    const { data } = await postService.getPosts({ url: `/posts/${params.id}` });
+    const id = getPostID(params.id);
+    const { data } = await postService.getPosts({ url: `/posts/${id}` });
 
     return {
       props: {

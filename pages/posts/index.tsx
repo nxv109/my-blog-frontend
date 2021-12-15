@@ -63,7 +63,13 @@ function Posts({ postsList }: { postsList: IPostItems[] }) {
       <Body callback={handleScroll}>
         <S.PostWrapper>
           {posts.map((post: IPostItems) => (
-            <Link href={`/posts/${post._id}`} key={post._id} passHref>
+            <Link
+              href={`/posts/${
+                post.slug ? `${post.slug}-${post._id}` : post._id
+              }`}
+              key={post._id}
+              passHref
+            >
               <S.PostItem>
                 <S.Info>
                   <S.Title>{post.title}</S.Title>

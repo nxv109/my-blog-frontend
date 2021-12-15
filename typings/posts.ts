@@ -3,6 +3,7 @@ export interface IPostItems {
   title: string;
   summary: string;
   content: string;
+  slug: string;
   category: Record<string, any>;
   article_thumbnail: string;
   tags: string[];

@@ -21,6 +21,7 @@ import {
 } from '@/utils/pages/admin/posts';
 
 import { APP_KEYS, ROUTES } from '@/constants';
+import { convertStringToSlug } from '@/utils/converts';
 
 import { ITags } from '@/typings/tags';
 import QuillEditor from '@/components/Editor/quillEditor';
@@ -41,7 +42,7 @@ function AddPost({ tagList }: { tagList: ITags[] }) {
   const [inputTag, setInputTag] = useState('');
   const tagRef = useRef<HTMLDivElement>(null);
 
-  const { handleSubmit, control, register } = useForm({
+  const { handleSubmit, control, register, setValue } = useForm({
     mode: 'onChange',
   });
 
@@ -149,10 +150,23 @@ function AddPost({ tagList }: { tagList: ITags[] }) {
           <S.AddNewWrapper>
             <S.FormGroup>
               <S.FormGroup>
-                <Input
-                  type="text"
-                  placeholder="Title..."
-                  {...register('title')}
+                <Controller
+                  name="title"
+                  control={control}
+                  render={({ field }) => {
+                    return (
+                      <Input
+                        type="text"
+                        placeholder="Title..."
+                        value={field.value}
+                        onChange={(e: any) => {
+                          field.onChange(e);
+                          setValue('slug', convertStringToSlug(e.target.value));
+                        }}
+                        isControlled
+                      />
+                    );
+                  }}
                 />
               </S.FormGroup>
               <S.FormGroup>
@@ -199,6 +213,9 @@ function AddPost({ tagList }: { tagList: ITags[] }) {
                   ))}
                 </S.Tags>
               </S.TagWrapper>
+            </S.FormGroup>
+            <S.FormGroup>
+              <Input type="text" placeholder="Slug..." {...register('slug')} />
             </S.FormGroup>
             <Button
               onClick={handleSubmit((data: any) =>
