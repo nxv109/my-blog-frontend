@@ -43,4 +43,12 @@ module.exports = {
 
     return config;
   },
+  async rewrites() {
+    return [
+      {
+        source: '/robots.txt',
+        destination: '/api/sitemap',
+      },
+    ];
+  },
 };
