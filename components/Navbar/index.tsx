@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 
 import Button from '@/components/Button';
 import Logo from '@/components/Logo';
+import userService from '@/services/userService';
+import { APP_KEYS } from '@/constants';
 
 import webStorage from '@/utils/webStorage';
 import {
@@ -18,7 +20,16 @@ import * as S from './styles';
 function Navbar({ user }: { user: IUsers }) {
   const router = useRouter();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const accessToken = webStorage.get(APP_KEYS.ACCESS_TOKEN);
+
+    await userService.logout({
+      url: '/logout',
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+
     webStorage.removeAll();
     router.push('/login');
   };

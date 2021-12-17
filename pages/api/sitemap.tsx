@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (links.length) {
       links.forEach((link: any) => {
         smStream.write({
-          url: `/posts/${link._id}`,
+          url: `/posts/${link.slug ? `${link.slug}-${link._id}` : link._id}`,
           changefreq: 'daily',
           priority: 0.9,
         });

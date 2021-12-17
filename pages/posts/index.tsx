@@ -12,7 +12,7 @@ import { IPostItems } from '@/typings/posts';
 
 import * as S from '@/styles/pages/posts';
 
-const limitNumber = 8;
+const limitNumber = 10;
 
 function Posts({ postsList }: { postsList: IPostItems[] }) {
   const [posts, setPosts] = useState<IPostItems[] | null>(null);

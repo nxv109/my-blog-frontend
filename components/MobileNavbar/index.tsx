@@ -12,6 +12,8 @@ import {
   NAVBAR_ITEMS_ADMIN,
   AUTH_ROUTES,
 } from '@/constants/navbarItem';
+import { APP_KEYS } from '@/constants';
+import userService from '@/services/userService';
 
 import { IUsers } from '@/typings/users';
 
@@ -55,7 +57,16 @@ function MobileNavbar({ user }: { user: IUsers }) {
     setShowNavbar(false);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const accessToken = webStorage.get(APP_KEYS.ACCESS_TOKEN);
+
+    await userService.logout({
+      url: '/logout',
+      headers: {
+        Authorization: accessToken,
+      },
+    });
+
     webStorage.removeAll();
     router.push('/login');
   };
