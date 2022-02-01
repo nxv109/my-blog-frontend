@@ -17,21 +17,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       links.forEach((link: any) => {
         smStream.write({
           url: `/posts/${link.slug ? `${link.slug}-${link._id}` : link._id}`,
-          changefreq: 'daily',
-          priority: 0.9,
         });
       });
 
       smStream.write({
         url: '/about-me',
-        changefreq: 'daily',
-        priority: 0.9,
       });
     } else {
       smStream.write({
         url: '/',
-        changefreq: 'daily',
-        priority: 0.9,
       });
     }
 
