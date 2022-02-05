@@ -6,7 +6,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const smStream = new SitemapStream({
       hostname: `https://${req.headers.host}`,
-      // cacheTime: 600000,
     });
 
     const response = await postService.getPosts({ url: '/posts' });
@@ -17,6 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       links.forEach((link: any) => {
         smStream.write({
           url: `/posts/${link.slug ? `${link.slug}-${link._id}` : link._id}`,
+          // url: `/posts/${link._id}`,
         });
       });
 
