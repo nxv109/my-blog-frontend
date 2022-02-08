@@ -59,6 +59,35 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
           />
+
+          {/* <!-- Google Analytics --> */}
+          <meta
+            name="google-signin-client_id"
+            content={`${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_CLIENT_ID}`}
+          />
+          <meta
+            name="google-signin-scope"
+            content="https://www.googleapis.com/auth/analytics.readonly"
+          />
+          {/* <!-- Load the JavaScript API client and Sign-in library. --> */}
+          {/* <script src="https://apis.google.com/js/client:platform.js" /> */}
+
+          {/* Global site tag (gtag.js) */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS});
+            `,
+            }}
+          />
         </Head>
         <body>
           <Main />
