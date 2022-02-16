@@ -103,8 +103,8 @@ async function handleUploadFile(file: Blob | string) {
 
 function getPostID(text: string) {
   if (!text) return '';
-
   const textSplit = text.split('-');
+
   return textSplit[textSplit.length - 1];
 }
 

@@ -56,11 +56,21 @@ function Posts({ post }: { post: IPostItems }) {
 export const getServerSideProps = async ({ params }: { params: Params }) => {
   try {
     const id = getPostID(params.id);
+
     const { data } = await postService.getPosts({ url: `/posts/${id}` });
 
+    if (params.id.split('-').length > 1) {
+      return {
+        props: {
+          post: data.data,
+        },
+      };
+    }
+
     return {
-      props: {
-        post: data.data,
+      redirect: {
+        destination: `/posts/${`${data.data.slug}-${data.data._id}`}`,
+        permanent: false,
       },
     };
   } catch (error) {

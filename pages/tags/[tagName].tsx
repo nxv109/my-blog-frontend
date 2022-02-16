@@ -25,9 +25,7 @@ function PostsWithTag({ posts }: { posts: IPostItems[] }) {
         <S.PostWrapper>
           {posts.map((post: IPostItems) => (
             <Link
-              href={`/posts/${
-                post.slug ? `${post.slug}-${post._id}` : post._id
-              }`}
+              href={`/posts/${`${post.slug}-${post._id}`}`}
               key={post._id}
               passHref
             >
