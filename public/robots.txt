@@ -2,5 +2,3 @@ Sitemap: https://nxv109.com/api/sitemap
 
 User-agent: *
 Allow: /*
-
-Disallow: /api/*

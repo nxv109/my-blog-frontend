@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import Header from '@/components/Header';
 import Body from '@/components/Body';
@@ -16,7 +17,9 @@ type Params = {
 };
 
 function Posts({ post }: { post: IPostItems }) {
+  const router = useRouter();
   const [content, setContent] = useState('');
+  console.log(router);
 
   useEffect(() => {
     setContent(post.content);
@@ -24,7 +27,12 @@ function Posts({ post }: { post: IPostItems }) {
 
   return (
     <S.Wrapper>
-      <Head title={post.title} />
+      <Head
+        title={post.title || ''}
+        description={post.summary || ''}
+        ogImage={post.article_thumbnail || ''}
+        ogUrl={router.asPath || ''}
+      />
       <Header title="Posts" showBackButton />
       <Body>
         <S.PostWrapper>

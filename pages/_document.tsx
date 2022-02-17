@@ -42,6 +42,7 @@ class MyDocument extends Document {
             name="google-site-verification"
             content="nKt1iz-l5P8hgSAxGvUj11I4HcsvJt513uTLfQ7VYmQ"
           />
+          <meta name="robots" content="index,follow"></meta>
           <link
             rel="shortcut icon"
             href="https://i.ibb.co/16FpfZs/small-logo.png"
