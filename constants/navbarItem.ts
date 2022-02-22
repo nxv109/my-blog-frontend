@@ -8,10 +8,6 @@ export const NAVBAR_ITEMS_CLIENT = [
     pathname: '/tags',
   },
   {
-    name: 'About me',
-    pathname: '/about-me',
-  },
-  {
     name: 'My profile',
     pathname: '/profile',
   },

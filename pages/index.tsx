@@ -1,14 +1,15 @@
-import Posts from './posts';
+import AboutMe from './about-me';
 
 export default function Index(props: any) {
-  return <Posts {...props} />;
+  return <AboutMe {...props} />;
 }
 
-export const getServerSideProps = async () => {
-  return {
-    redirect: {
-      destination: '/posts',
-      permanent: false,
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   return {
+//     redirect: {
+//       // destination: '/posts',
+//       destination: '/about-me',
+//       permanent: false,
+//     },
+//   };
+// };

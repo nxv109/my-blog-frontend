@@ -19,7 +19,6 @@ type Params = {
 function Posts({ post }: { post: IPostItems }) {
   const router = useRouter();
   const [content, setContent] = useState('');
-  console.log(router);
 
   useEffect(() => {
     setContent(post.content);

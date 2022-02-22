@@ -94,7 +94,7 @@ function AboutMe() {
               <S.SocialWrapper>
                 <S.SocialLink>
                   <a
-                    href="https://www.facebook.com/nguyenxuanvinh109/"
+                    href="https://www.facebook.com/nxv109/"
                     target="_blank"
                   >
                     <S.Logo
@@ -104,7 +104,7 @@ function AboutMe() {
                   </a>
                 </S.SocialLink>
                 <S.SocialLink>
-                  <a href="https://twitter.com/nguoitoiyeu109" target="_blank">
+                  <a href="https://twitter.com/nxv109" target="_blank">
                     <S.Logo
                       src="https://i.ibb.co/RzynQ99/twitter.png"
                       width="30"
