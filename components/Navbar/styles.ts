@@ -6,7 +6,6 @@ export const Navbar = styled.nav`
   height: 100%;
   padding: 3rem;
   border-right: 5px solid ${({ theme }) => theme.colors.yellow2};
-  box-shadow: 5px 5px 15px -6px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-flow: column;
 
@@ -51,6 +50,7 @@ export const NavbarItems = styled.div`
     color: ${({ theme }) => theme.colors.blue};
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 
     &:hover,
     &.active {

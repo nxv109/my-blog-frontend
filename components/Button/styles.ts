@@ -6,6 +6,7 @@ export const Button = styled.button`
   border: none;
   box-shadow: 1px 1px 0 ${({ theme }) => theme.colors.blue};
   font-size: 1.4rem;
+  text-transform: uppercase;
   cursor: pointer;
 
   &.primary {

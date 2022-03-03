@@ -12,7 +12,7 @@ export const Left = styled.div`
 
 export const BackButton = styled.span`
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.white};
   text-align: center;
   width: 28px;
   height: 28px;
@@ -21,7 +21,7 @@ export const BackButton = styled.span`
 export const Title = styled.div`
   font-size: 2.3rem;
   font-weight: normal;
-  color: ${({ theme }) => theme.colors.yellow};
+  color: ${({ theme }) => theme.colors.white};
   word-spacing: 3px;
   word-break: break-all;
   text-transform: uppercase;

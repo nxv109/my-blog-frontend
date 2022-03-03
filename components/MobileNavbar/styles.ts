@@ -19,7 +19,7 @@ export const Btn = styled.div`
 
 export const Line = styled.div`
   height: 2px;
-  background: ${({ theme }) => theme.colors.yellow};
+  background: ${({ theme }) => theme.colors.white};
   animation: line 2s;
 
   @keyframes line {
@@ -38,7 +38,7 @@ export const DiagonalLine = styled.div`
   left: 0;
   width: 100%;
   height: 2px;
-  background: ${({ theme }) => theme.colors.yellow};
+  background: ${({ theme }) => theme.colors.white};
 
   &:nth-child(1) {
     transform: rotate(45deg);
@@ -132,6 +132,7 @@ export const NavbarItems = styled.div`
     color: ${({ theme }) => theme.colors.white};
     background-clip: text;
     text-shadow: 0px 3px 3px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
 
     &:hover,
     &.active {

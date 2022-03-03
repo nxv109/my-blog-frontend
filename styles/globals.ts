@@ -91,16 +91,16 @@ const base = css`
     position: relative;
     background: linear-gradient(
       to right bottom,
-      rgba(255, 255, 255, 0.8),
-      rgba(255, 255, 255, 0.3)
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.2)
     );
     width: 1200px;
     max-width: 100%;
     height: 90%;
     margin: auto;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(30px);
     box-shadow: ${({ theme }) =>
-      `0px 0px 20px 5px ${rgba(theme.colors.white, 0.2)}`};
+      `0px 0px 0px 10px ${rgba(theme.colors.white, 0.2)}`};
     z-index: 3;
     display: flex;
 
@@ -253,12 +253,12 @@ const base = css`
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #b19044;
   }
 
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #eeb32b;
   }
 `;
 
