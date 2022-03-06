@@ -23,6 +23,7 @@ import {
 import { APP_KEYS, ROUTES } from '@/constants';
 
 import { ITags } from '@/typings/tags';
+import { IPostItems } from '@/typings/posts';
 
 import QuillEditor from '@/components/Editor/quillEditor';
 
@@ -79,24 +80,34 @@ function EditPost({ post, tagList }: { post: IPostItems; tagList: ITags[] }) {
 
       const tagsNotExistInDB = tagNotExistInDB(tagList, tagRef.current.values);
 
-      await Promise.all([
-        postService.updatePost({
+      if (tagsNotExistInDB?.length) {
+        await Promise.all([
+          postService.updatePost({
+            url: `/posts/${router.query.id}`,
+            data: newFormData,
+            headers: {
+              Authorization: token,
+            },
+          }),
+          ...tagsNotExistInDB.map(tag => {
+            return tagService.addTag({
+              url: '/tags',
+              data: { name: tag },
+              headers: {
+                Authorization: token,
+              },
+            });
+          }),
+        ]);
+      } else {
+        await postService.updatePost({
           url: `/posts/${router.query.id}`,
           data: newFormData,
           headers: {
             Authorization: token,
           },
-        }),
-        ...tagsNotExistInDB.map(tag => {
-          return tagService.addTag({
-            url: '/tags',
-            data: { name: tag },
-            headers: {
-              Authorization: token,
-            },
-          });
-        }),
-      ]);
+        });
+      }
     } finally {
       if (!autoSave) {
         router.push(ROUTES.ADMIN_POST_LIST);

@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const Body = styled.section`
   position: relative;
-  background: rgb(255, 255, 255);
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 1) 0%,

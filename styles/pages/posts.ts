@@ -127,6 +127,7 @@ export const PostContent = styled.p`
     background: ${({ theme }) => theme.colors.gray2};
     border-left: 5px solid ${({ theme }) => theme.colors.yellow};
     padding: 1rem;
+    margin: 0;
     font-style: italic;
   }
 
