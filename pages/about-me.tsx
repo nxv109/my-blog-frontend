@@ -16,7 +16,10 @@ function AboutMe() {
 
   return (
     <S.Wrapper>
-      <Head title="About me" description="Author: Vinh Nguyen(nxv109), Job: Front-end Developer, Address: Quang Nam - Da Nang, Github: https://github.com/nxv109" />
+      <Head
+        title="About me"
+        description="Author: Vinh Nguyen(nxv109), Job: Front-end Developer, Address: Quang Nam - Da Nang, Github: https://github.com/nxv109"
+      />
       <Header title="About me" showBackButton />
       <Body noPadding>
         <S.InnerWrapper>
@@ -39,12 +42,12 @@ function AboutMe() {
                 <S.Profession>Front-end Developer.</S.Profession>
                 <S.BioText>
                   <p>
-                    Hi! My name is Vinh, I am an enthusiastic and optimistic
+                    I am an enthusiastic and optimistic
                     front-end Developer, with nearly two years of experience and
-                    have worked through many different projects for Japanese
-                    companies such as E-commerce, management system, product
-                    promotion, branding...I have a Bachelor of Practice in
-                    Software Engineering.
+                    have worked through many different projects such as
+                    E-commerce, management system, product promotion,
+                    branding,...I have a Bachelor of Practice in Software
+                    Engineering.
                   </p>
                   <p>
                     I have knowledge of HTML, CSS, Javascript, ReactJS, NextJS,
@@ -59,7 +62,7 @@ function AboutMe() {
               </S.BioBox>
             </S.InfoRight>
           </S.InfoBox>
-          <S.SectionBox>
+          {/* <S.SectionBox>
             <S.Title>My own projects</S.Title>
             <S.Content>
               {projects.map((project, index) => (
@@ -87,16 +90,13 @@ function AboutMe() {
                 </S.Project>
               ))}
             </S.Content>
-          </S.SectionBox>
+          </S.SectionBox> */}
           <S.SectionBox>
             <S.Title>Follow me</S.Title>
             <S.Content>
               <S.SocialWrapper>
                 <S.SocialLink>
-                  <a
-                    href="https://www.facebook.com/nxv109/"
-                    target="_blank"
-                  >
+                  <a href="https://www.facebook.com/nxv109/" target="_blank">
                     <S.Logo
                       src="https://i.ibb.co/n1bRD9h/facebook-circular-logo.png"
                       width="30"
