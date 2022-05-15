@@ -45,8 +45,7 @@ function AboutMe() {
                     I am an enthusiastic and optimistic
                     front-end Developer, with nearly two years of experience and
                     have worked through many different projects such as
-                    E-commerce, management system, product promotion,
-                    branding,...I have a Bachelor of Practice in Software
+                    E-commerce, management system, virtual reality,...I have a Bachelor of Practice in Software
                     Engineering.
                   </p>
                   <p>

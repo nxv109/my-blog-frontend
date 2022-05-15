@@ -42,7 +42,7 @@ function Cv() {
             Hi! I'm Vinh, I am an enthusiastic and optimistic front-end
             Developer, with nearly two years of experience and have worked
             through many different projects such as E-commerce, management
-            system, product promotion, branding, virtual reality... I have a Bachelor of Practice
+            system, virtual reality... I have a Bachelor of Practice
             in Software Engineering.
           </li>
           <li>
@@ -82,7 +82,7 @@ function Cv() {
             <li>Support everyone on the Team.</li>
             <li>Join the knowledge sharing session of the Company.</li>
             <li>Participating projects: E-commerce, management
-              systems, product promotion, branding, virtual reality.</li>
+              systems, virtual reality.</li>
           </ul>
         </S.Experience>
       </S.Section>
