@@ -60,7 +60,8 @@ function Posts({ post }: { post: IPostItems }) {
   );
 }
 
-export const getServerSideProps = async ({ params }: { params: Params }) => {
+// If you wanna render at every request so replace "getStaticProps" to "getServerSideProps" and comment "getStaticPaths"
+export const getStaticProps = async ({ params }: { params: Params }) => {
   try {
     const id = getPostID(params.id);
 
@@ -88,21 +89,21 @@ export const getServerSideProps = async ({ params }: { params: Params }) => {
 };
 
 // NOTE: Generate static page at build time
-// export const getStaticPaths = async () => {
-//   try {
-//     const { data } = await postService.getPosts({ url: '/posts' });
-//     const posts = data.data;
+export const getStaticPaths = async () => {
+  try {
+    const { data } = await postService.getPosts({ url: '/posts' });
+    const posts = data.data;
 
-//     const paths = posts.map((post: IPostItems) => ({
-//       params: { id: post._id },
-//     }));
+    const paths = posts.map((post: IPostItems) => ({
+      params: { id: `${post.slug}-${post._id}` },
+    }));
 
-//     return { paths, fallback: true };
-//   } catch {
-//     return {
-//       notFound: true,
-//     };
-//   }
-// };
+    return { paths, fallback: false };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
+};
 
 export default Posts;
