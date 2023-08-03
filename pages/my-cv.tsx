@@ -23,7 +23,6 @@ function Cv() {
   return (
     <S.Wrapper>
       <Head title="My CV" />
-      {/* <h3 style={{ textAlign: 'center' }}>Coming soon!</h3> */}
       <S.BackHome>
         <Link href="/">Home</Link>
       </S.BackHome>
@@ -40,15 +39,15 @@ function Cv() {
         <ul>
           <li>
             Hi! I'm Vinh, I am an enthusiastic and optimistic front-end
-            Developer, with nearly two years of experience and have worked
-            through many different projects such as E-commerce, management
-            system, virtual reality... I have a Bachelor of Practice
-            in Software Engineering.
+            Developer, with three years of experience and have worked through
+            many different projects such as E-commerce, management system,
+            virtual reality... I have a Bachelor of Practice in Software
+            Engineering.
           </li>
           <li>
-            I have knowledge of HTML, CSS, Javascript, ReactJS, NextJS,
+            I have knowledge of HTML, CSS, Javascript, ReactJS, NextJS, VueJS,
             Bootstrap, Typescript, Styled-components and Git,... Additionally,
-            have a certain understanding of NodeJS, MongoDB, VueJS.
+            have a certain understanding of NodeJS, MongoDB...
           </li>
           {/* <li>My goal for the next two years is to become a team lead.</li> */}
         </ul>
@@ -72,17 +71,17 @@ function Cv() {
             </S.Left>
             <S.Right>
               <S.CompanyAddress>16 Ly Thuong Kiet, Da Nang</S.CompanyAddress>
-              <S.CompletionTime>
-                04/2020 - Now
-              </S.CompletionTime>
+              <S.CompletionTime>04/2020 - Now</S.CompletionTime>
             </S.Right>
           </S.OrganizationWrapper>
           <ul>
             <li>Participate in research and coding.</li>
             <li>Support everyone on the Team.</li>
             <li>Join the knowledge sharing session of the Company.</li>
-            <li>Participating projects: E-commerce, management
-              systems, virtual reality.</li>
+            <li>
+              Participating projects: E-commerce, management systems, virtual
+              reality.
+            </li>
           </ul>
         </S.Experience>
       </S.Section>
